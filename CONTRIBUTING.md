@@ -60,8 +60,22 @@ To request a new type, open an issue; the maintainers extend the schema and the 
 
 ## Validation and CI
 
-- `.github/workflows/validate.yml` runs `scripts/validate.py` on every pull request and push to `main`.
+- `.github/workflows/validate.yml` runs on every pull request and push to `main`:
+  - `scripts/validate.py` - validates every plugin's folder, manifest, and metadata coherence. In addition to the manifest schema it enforces: `kwineffect` metadata is only allowed on `type: kwineffect` plugins, a KWin `metadata.desktop` must not ship under another type, `kwineffect.kpluginId` matches the KWin package's `X-KDE-PluginInfo-Name`, and the description must not advertise a shortcut the plugin never registers.
+  - `scripts/check_safety.py` - scans plugin source for external downloads / network fetches, privilege escalation (`pkexec`/`sudo`/`doas`), and shell-outs, plus low-severity naming warnings. Download and privilege findings are hard errors unless the line carries an opt-out comment (see below).
+  - `scripts/check_scope.py` - fails a PR that touches anything outside `plugins/` (root files, docs, scripts, workflows, and `index.json` belong in their own PRs).
 - `.github/workflows/build-index.yml` regenerates `index.json` after every merge to `main`, so you never need to edit it by hand.
+
+### Opting out of a safety rule
+
+A plugin that legitimately downloads content or elevates privileges must be reviewed by a maintainer first. Mark the exact line so the check passes:
+
+```
+file(DOWNLOAD https://... ...)   # caelestia-audit: allow-network
+pkexec cmake --install           # caelestia-audit: allow-privilege
+```
+
+Use these sparingly - the store defaults to source-only with no surprise downloads or unexpected shelling out.
 
 ## Maintainer review checklist
 
@@ -70,5 +84,6 @@ To request a new type, open an issue; the maintainers extend the schema and the 
 - `id` is unique and not reserved; the folder name equals the manifest `id`.
 - A `LICENSE` file is present and the license is acceptable.
 - The plugin is not malicious: no surprise downloads, data exfiltration, hidden network calls, or unexpected shelling out.
+- Any `caelestia-audit: allow-*` opt-outs in the diff are justified.
 - For updates: the version was bumped with semver.
 - For deprecations: `replacement` points at a real plugin.

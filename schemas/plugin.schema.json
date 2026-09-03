@@ -148,5 +148,18 @@
       "type": "string",
       "description": "Id of the plugin that replaces this one (used with deprecated: true)."
     }
+  },
+  "if": {
+    "properties": {
+      "type": { "const": "kwineffect" }
+    }
+  },
+  "then": {
+    "required": ["kwineffect"]
+  },
+  "else": {
+    "properties": {
+      "kwineffect": false
+    }
   }
 }
