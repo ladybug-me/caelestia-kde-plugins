@@ -1,0 +1,5 @@
+Colors 1.0 Colors.qml
+singleton Style 1.0 Style.qml
+StyledToolTip 1.0 StyledToolTip.qml
+WebCursorConfig 1.0 Config.qml
+WebCursorManager 1.0 WebCursorManager.qml

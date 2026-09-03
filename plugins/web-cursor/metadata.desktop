@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KWin/Effect
+Name=Ultralight Web Cursor
+Comment=Render an animated HTML/CSS/JS cursor through KWin using Ultralight
+Icon=preferences-system-windows
+X-KDE-PluginInfo-Author=LuYishan-4
+X-KDE-PluginInfo-Email=
+X-KDE-PluginInfo-Name=ultralightwebcursor
+X-KDE-PluginInfo-Version=1.0.0
+X-KDE-PluginInfo-Website=https://github.com/LuYishan-4/Animated_UltralightWeb_Cursor
+X-KDE-PluginInfo-Category=Window Management
+X-KDE-PluginInfo-License=GPL-3.0-or-later
+X-KDE-PluginInfo-EnabledByDefault=true

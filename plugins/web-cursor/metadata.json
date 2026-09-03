@@ -1,0 +1,27 @@
+{
+  "id": "web-cursor",
+  "name": "Ultralight Web Cursor",
+  "description": "KWin effect that replaces the system cursor with an animated HTML/CSS/JS cursor rendered by Ultralight. Press Meta+Alt+W to view",
+  "version": "1.0.0",
+  "type": "quickshell",
+  "author": {
+    "name": "LuYishan-4",
+    "url": "https://github.com/LuYishan-4"
+  },
+  "license": "GPL-3.0-or-later",
+  "icon": "asstes/saki.png",
+  "keywords": [
+    "cursor",
+    "kwin",
+    "effect",
+    "ultralight",
+    "html",
+    "css",
+    "custom-cursor"
+  ],
+  "repository": "https://github.com/LuYishan-4/Animated_UltralightWeb_Cursor",
+  "restart": true,
+  "kwineffect": {
+    "kpluginId": "ultralightwebcursor"
+  }
+}
