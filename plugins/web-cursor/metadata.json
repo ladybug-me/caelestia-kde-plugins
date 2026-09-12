@@ -1,7 +1,7 @@
 {
   "id": "web-cursor",
   "name": "Ultralight Web Cursor",
-  "description": "KWin effect that replaces the system cursor with an animated HTML/CSS/JS cursor rendered by Ultralight. Press Meta+Shift+C to open its settings.",
+  "description": "KWin effect that replaces the system cursor with an animated HTML/CSS/JS cursor rendered by Ultralight. Press Meta+Ctrl+C to open its settings.",
   "version": "1.1.0",
   "type": "kwineffect",
   "author": {

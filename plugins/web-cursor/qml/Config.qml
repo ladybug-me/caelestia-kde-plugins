@@ -50,7 +50,7 @@ QtObject {
     property string themesDir: config.themesDirDefault
 
     // UI convenience; not part of the effect schema.
-    property string shortcut: "Meta+Shift+C"
+    property string shortcut: "Meta+Ctrl+C"
 
     // Bootstrap: build the bundled C++ effect (contents/ CMake project) with
     // cmake when its artifacts are missing from the plugin folder.
@@ -69,7 +69,7 @@ QtObject {
 
     readonly property var defaultConfig: ({
         webCursor: {
-            shortcut: "Meta+Shift+C",
+            shortcut: "Meta+Ctrl+C",
             build: {
                 auto: true,
                 autoInstall: true
@@ -148,7 +148,7 @@ QtObject {
         _mergeDefaults(parsed)
 
         // Meta+Alt+W was the original, incorrect documented default. Migrate
-        // that exact legacy value so existing installs use Meta+Shift+C while
+        // that exact legacy value so existing installs use Meta+Ctrl+C while
         // preserving every other user-selected shortcut.
         const migrateLegacyShortcut = parsed.webCursor.shortcut === "Meta+Alt+W"
 
@@ -163,8 +163,8 @@ QtObject {
         if (!config._sameArray(incomingBlacklist, config.blacklist))
             config.blacklist = incomingBlacklist
         config.themesDir = cursor.themesDir || config.themesDirDefault
-        config.shortcut = migrateLegacyShortcut ? "Meta+Shift+C"
-                                               : (parsed.webCursor.shortcut || "Meta+Shift+C")
+        config.shortcut = migrateLegacyShortcut ? "Meta+Ctrl+C"
+                                               : (parsed.webCursor.shortcut || "Meta+Ctrl+C")
         config.autoBuild = !parsed.webCursor.build || parsed.webCursor.build.auto !== false
         config.autoInstall = !parsed.webCursor.build || parsed.webCursor.build.autoInstall !== false
         config.installGlobal = !parsed.webCursor.upload || parsed.webCursor.upload.installGlobal === true
@@ -224,7 +224,7 @@ QtObject {
         data.webCursor = JSON.parse(JSON.stringify(defaultConfig.webCursor))
         // Re-resolve the dynamic default path.
         data.webCursor.cursor.themesDir = config.themesDirDefault
-        data.webCursor.shortcut = "Meta+Shift+C"
+        data.webCursor.shortcut = "Meta+Ctrl+C"
         _loading = true
         config._data = data
         config.enabled = data.webCursor.cursor.enabled

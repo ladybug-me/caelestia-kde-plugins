@@ -10,7 +10,7 @@ The plugin is source-only and ships both halves in one folder:
 - the KWin effect (`ultralightwebcursor`), built from C++ with CMake, and
 - the Quickshell settings UI (`main.qml` + `qml/`), which the shell loads
   because the manifest sets `"ui": "main.qml"`, and which registers the
-  `Meta+Shift+C` shortcut.
+  `Meta+Ctrl+C` shortcut.
 
 Both halves share the `webCursor` section in
 `~/.config/caelestia/shell.json`.
@@ -120,7 +120,7 @@ What the UI can do:
   `describe`, minimum size), and can **upload a theme folder** (copied to the
   user dir), open a theme folder, or remove uploaded themes.
 - One settings overlay per screen, toggled with the `webcursor_settings`
-  shortcut (default `Meta+Shift+C`, override with the `webCursor.shortcut`
+  shortcut (default `Meta+Ctrl+C`, override with the `webCursor.shortcut`
   key in `shell.json`); close it with `Esc` or by clicking the backdrop.
 
 ## Configuration
@@ -131,7 +131,7 @@ Everything lives in the `webCursor` section of
 ```jsonc
 {
   "webCursor": {
-    "shortcut": "Meta+Shift+C",   // toggle key for the settings overlay
+    "shortcut": "Meta+Ctrl+C",   // toggle key for the settings overlay
     "build": {
       "auto": true,               // cmake-build the effect when it is missing
       "autoInstall": true         // pkexec-install + enable it once built
