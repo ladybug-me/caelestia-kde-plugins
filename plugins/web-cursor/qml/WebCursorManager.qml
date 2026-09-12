@@ -1,4 +1,4 @@
-// QML port of `caelestia-dots-kde/shell/services/WebCursor.qml`.
+// QML port of `caelestia-kde/shell/services/WebCursor.qml`.
 //
 // Adaptations for the plugin environment:
 //   * the shell's `GlobalConfig.webCursor.cursor` became the `config`

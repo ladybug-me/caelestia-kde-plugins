@@ -5,7 +5,7 @@ wanders around, sits on the taskbar, and can be picked up and tossed with the
 mouse.
 
 Ported from the shimeji module in
-[ladybug-me/caelestia-dots-kde](https://github.com/ladybug-me/caelestia-dots-kde).
+[ladybug-me/caelestia-kde](https://github.com/ladybug-me/caelestia-kde).
 
 ## Requirements
 

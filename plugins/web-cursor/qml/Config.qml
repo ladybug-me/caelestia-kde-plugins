@@ -1,4 +1,4 @@
-// QML port of `caelestia-dots-kde`'s `Caelestia/Config/webcursorconfig.hpp`.
+// QML port of `caelestia-kde`'s `Caelestia/Config/webcursorconfig.hpp`.
 //
 // The KWin cursor effect runs as a separate process and keeps its whole
 // user-facing state in the `webCursor` section of the shared Caelestia config

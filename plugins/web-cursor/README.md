@@ -96,9 +96,9 @@ The settings UI ships in this folder. The shell loads `main.qml` because
 to install.
 
 The QML half mirrors the web cursor UI/service/config from
-[`caelestia-dots-kde`](https://github.com/LuYishan-4/caelestia-dots-kde):
+[`caelestia-kde`](https://github.com/LuYishan-4/caelestia-dots-kde):
 
-| Source (caelestia-dots-kde) | Port in this folder |
+| Source (caelestia-kde) | Port in this folder |
 | --- | --- |
 | `shell/plugin/src/Caelestia/Config/webcursorconfig.hpp` | `qml/Config.qml` (`WebCursorConfig`) |
 | `shell/services/WebCursor.qml` | `qml/WebCursorManager.qml` |

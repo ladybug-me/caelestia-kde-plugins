@@ -1,6 +1,6 @@
 // Settings UI for the web cursor effect.
 //
-// Port of `caelestia-dots-kde/shell/modules/nexus/pages/desktop/WebCursorPage.qml`
+// Port of `caelestia-kde/shell/modules/nexus/pages/desktop/WebCursorPage.qml`
 // into the plugin's own QML architecture (mirroring the wallpaper-selector
 // plugin): no dependency on shell-only `qs.components` / `nexus.common`
 // controls — rows, switches and steppers are the plugin's own components and

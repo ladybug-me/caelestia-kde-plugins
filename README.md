@@ -1,6 +1,6 @@
 # Caelestia Community Plugin Store
 
-A community plugin store for [Caelestia](https://github.com/ladybug-me/caelestia-dots-kde), the KDE Plasma 6 desktop shell.
+A community plugin store for [Caelestia](https://github.com/ladybug-me/caelestia-kde), the KDE Plasma 6 desktop shell.
 
 Each folder under [`plugins/`](plugins/) is one plugin, contributed via pull request. CI checks the structure and a maintainer reviews every change before it merges.
 

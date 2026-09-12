@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: Caelestia shell repository
-    url: https://github.com/ladybug-me/caelestia-dots-kde
+    url: https://github.com/ladybug-me/caelestia-kde
     about: Issues about the Caelestia shell itself (not plugins).
