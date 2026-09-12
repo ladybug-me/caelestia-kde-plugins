@@ -1,7 +1,7 @@
 {
   "format": "caelestia-plugin-index",
   "version": 1,
-  "generated": "2026-09-10T17:08:22Z",
+  "generated": "2026-09-12T16:48:23Z",
   "plugins": [
     {
       "id": "shimeji-cat",
@@ -55,7 +55,7 @@
       "id": "web-cursor",
       "path": "plugins/web-cursor",
       "name": "Ultralight Web Cursor",
-      "description": "KWin effect that replaces the system cursor with an animated HTML/CSS/JS cursor rendered by Ultralight. Press Meta+Shift+C to open its settings.",
+      "description": "KWin effect that replaces the system cursor with an animated HTML/CSS/JS cursor rendered by Ultralight. Press Meta+Ctrl+C to open its settings.",
       "version": "1.1.0",
       "type": "kwineffect",
       "author": {
