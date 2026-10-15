@@ -1,0 +1,12 @@
+{
+  "name": "stock breeze lock screen (doc 4.1)",
+  "source": "docs/TROUBLESHOOTING.md section 4.1 symptom wording",
+  "input_text": "after update I get the Stock Breeze lock screen appears instead of the caelestia one",
+  "expect": {
+    "must_hit": [
+      "CL-runtime-lockscreen-lockpkg-001"
+    ],
+    "must_not_hit": [],
+    "ambiguous_ok": false
+  }
+}

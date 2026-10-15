@@ -1,0 +1,6 @@
+# golden sample: route-p19
+# argv: ['route', 'enable game mode automatically', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "EXPLAIN", "resolved_text": "enable game mode automatically", "ops": [{"tool": "setGameModeAutoEnable", "action": "set", "value": true, "raw": "enable game mode automatically"}], "confidence": 0.5, "calibrated": false, "questions": ["several settings could match: 'setGameModeAutoEnable', 'setGameModeDisableDesktopLyrics', 'setGameModeDisableHyprlandAnimations' \u2014 which one?"], "notes": ["no exposed magnitude for this setting \u2014 explaining instead of planning a no-op"], "evidence": ["[enable game mode automatically] name-atom coverage 50%", "[enable game mode automatically] on/off cue agrees with toggle setting", "[enable game mode automatically] matched 'game'", "[enable game mode automatically] matched 'mode'"], "candidates": [{"clause": "enable game mode automatically", "surface": "setGameModeAutoEnable", "kind": "tool", "score": 0.9355, "p": 0.3333}], "session_note": "", "strategy": "lexical", "explain": {"ok": true, "absence": true, "answer": "utilities.gameMode.autoEnable is on/off only \u2014 there is no strength to change. no magnitude control exists in this family.", "cites": [], "spec": {"name": "setGameModeAutoEnable", "path": "utilities.gameMode.autoEnable", "kind": "bool"}, "nearest": []}}

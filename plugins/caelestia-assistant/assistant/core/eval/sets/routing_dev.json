@@ -1,0 +1,837 @@
+{
+ "note": "AUTHORED by the exponential-build-5 ARENA-BUILDER from registry facts (tools.json ranges/enums/defaults) and rule-pack matchers. Reviewer judgment, not engine output. Negatives/accepts per the build-5 spec. A5 (2026-09-30): +31 items m01..m34 (m03/m32 cut — their target tools were pruned upstream and the honest answer is preset delegation or an ask, not a confident route) mined from the FAILURE CLASSES of the sealed baseline look (0.7778: sibling-tool swaps, auto-hide families, position-vs-alignment, absolute-vs-scale, keep-awake, unit spellings). Phrasings are NEW — no sealed text was copied. Items whose honest outcome is a clarifying question assert expect_verdict=AMBIGUOUS (invariant: verdicts stay honest, never a guess).",
+ "items": [
+  {
+   "id": "p01",
+   "text": "make the bar taller",
+   "accept": [
+    "setBarScale"
+   ]
+  },
+  {
+   "id": "p02",
+   "text": "shrink the taskbar",
+   "accept": [
+    "setBarScale"
+   ]
+  },
+  {
+   "id": "p03",
+   "text": "put the bar at the top",
+   "accept": [
+    "setBarPosition"
+   ]
+  },
+  {
+   "id": "p04",
+   "text": "turn off blur",
+   "accept": [
+    "setBlurEnabled"
+   ]
+  },
+  {
+   "id": "p05",
+   "text": "disable the blur effect",
+   "accept": [
+    "setBlurEnabled"
+   ]
+  },
+  {
+   "id": "p06",
+   "text": "I want windows to be more see-through",
+   "accept": [
+    "setTransparencyBase",
+    "setTransparencyEnabled"
+   ]
+  },
+  {
+   "id": "p07",
+   "text": "slow down the animations",
+   "accept": [
+    "setAnimationSpeed"
+   ]
+  },
+  {
+   "id": "p08",
+   "text": "make animations snappier",
+   "accept": [
+    "setAnimationSpeed"
+   ]
+  },
+  {
+   "id": "p09",
+   "text": "rounder corners",
+   "accept": [
+    "setRoundingScale",
+    "setRounding"
+   ]
+  },
+  {
+   "id": "p10",
+   "text": "increase the font size",
+   "accept": [
+    "setFontScale"
+   ]
+  },
+  {
+   "id": "p11",
+   "text": "make the dock icons bigger",
+   "accept": [
+    "setDockIconSize"
+   ]
+  },
+  {
+   "id": "p12",
+   "text": "mute all shell sounds",
+   "accept": [
+    "setSoundsEnabled"
+   ]
+  },
+  {
+   "id": "p13",
+   "text": "lower the sound effects volume",
+   "accept": [
+    "setSoundsSfxVolume"
+   ]
+  },
+  {
+   "id": "p14",
+   "text": "show seconds on the clock",
+   "accept": [
+    "setClockShowSeconds"
+   ]
+  },
+  {
+   "id": "p15",
+   "text": "use 24 hour time",
+   "accept": [
+    "setClockFormat"
+   ]
+  },
+  {
+   "id": "p16",
+   "text": "disable the launcher",
+   "accept": [
+    "setLauncherEnabled"
+   ]
+  },
+  {
+   "id": "p17",
+   "text": "hide the dashboard",
+   "accept": [
+    "setDashboardEnabled"
+   ]
+  },
+  {
+   "id": "p18",
+   "text": "turn off the volume popup",
+   "accept": [
+    "setEnableVolume",
+    "setOsdEnabled"
+   ]
+  },
+  {
+   "id": "p19",
+   "text": "enable game mode automatically",
+   "accept": [
+    "setGameModeAutoEnable"
+   ]
+  },
+  {
+   "id": "p20",
+   "text": "turn off the music visualizer",
+   "accept": [
+    "setVisualiserEnabled"
+   ]
+  },
+  {
+   "id": "p21",
+   "text": "show a clock on my desktop",
+   "accept": [
+    "setDesktopClockEnabled"
+   ]
+  },
+  {
+   "id": "p22",
+   "text": "lock the screen when the shell starts",
+   "accept": [
+    "setLockOnStartup"
+   ]
+  },
+  {
+   "id": "p23",
+   "text": "hide the shutdown button on the lock screen",
+   "accept": [
+    "setShowShutdown"
+   ]
+  },
+  {
+   "id": "p24",
+   "text": "make everything pitch black",
+   "accept": [
+    "setPitchBlack"
+   ]
+  },
+  {
+   "id": "p25",
+   "text": "show temperature in fahrenheit",
+   "accept": [
+    "setWeatherUnits",
+    "setSensorUnits"
+   ]
+  },
+  {
+   "id": "p26",
+   "text": "fewer notification popups at once",
+   "accept": [
+    "setNotifsMaxPopups"
+   ]
+  },
+  {
+   "id": "p27",
+   "text": "stop checking for updates",
+   "accept": [
+    "setCheckUpdates"
+   ]
+  },
+  {
+   "id": "p28",
+   "text": "make the borders thicker",
+   "accept": [
+    "setBorderThickness"
+   ]
+  },
+  {
+   "id": "p29",
+   "text": "more spacing between things",
+   "accept": [
+    "setSpacingScale"
+   ]
+  },
+  {
+   "id": "p30",
+   "text": "less padding",
+   "accept": [
+    "setPaddingScale"
+   ]
+  },
+  {
+   "id": "p31",
+   "text": "hide the sidebar",
+   "accept": [
+    "setSidebarEnabled"
+   ]
+  },
+  {
+   "id": "p32",
+   "text": "show the weather in the dashboard",
+   "accept": [
+    "setShowWeather"
+   ]
+  },
+  {
+   "id": "p33",
+   "text": "display CPU usage in the performance panel",
+   "accept": [
+    "setPerformanceShowCpu"
+   ]
+  },
+  {
+   "id": "p34",
+   "text": "let the bar hide until I hover",
+   "accept": [
+    "setBarShowOnHover"
+   ]
+  },
+  {
+   "id": "p35",
+   "text": "raise the max volume to 120",
+   "accept": [
+    "setMaxVolume"
+   ]
+  },
+  {
+   "id": "p36",
+   "text": "turn off the charging sound",
+   "accept": [
+    "setSoundsChargingStarted"
+   ]
+  },
+  {
+   "id": "p37",
+   "text": "hide the lock screen notifications",
+   "accept": [
+    "setHideNotifs"
+   ]
+  },
+  {
+   "id": "p38",
+   "text": "always show minimized windows",
+   "accept": [
+    "setShowMinimized"
+   ]
+  },
+  {
+   "id": "p39",
+   "text": "show windows in the workspace indicators",
+   "accept": [
+    "setWorkspacesShowWindows"
+   ]
+  },
+  {
+   "id": "p40",
+   "text": "no wallpaper slideshow",
+   "accept": [
+    "setSlideshowEnabled"
+   ]
+  },
+  {
+   "id": "p41",
+   "text": "optimize for gaming",
+   "accept": [
+    "preset:gaming"
+   ]
+  },
+  {
+   "id": "p42",
+   "text": "battery saving mode",
+   "accept": [
+    "preset:battery-saver"
+   ]
+  },
+  {
+   "id": "p43",
+   "text": "give me a macOS look",
+   "accept": [
+    "preset:macos-like"
+   ]
+  },
+  {
+   "id": "p44",
+   "text": "make it minimal",
+   "accept": [
+    "preset:minimal"
+   ]
+  },
+  {
+   "id": "r45",
+   "text": "make the clock show the date",
+   "accept": [
+    "setClockShowDate"
+   ]
+  },
+  {
+   "id": "r46",
+   "text": "hide the clock icon",
+   "accept": [
+    "setClockShowIcon"
+   ]
+  },
+  {
+   "id": "r47",
+   "text": "give the clock a background",
+   "accept": [
+    "setClockBackground"
+   ]
+  },
+  {
+   "id": "r48",
+   "text": "make the bar easier to drag",
+   "accept": [
+    "setBarDragThreshold"
+   ]
+  },
+  {
+   "id": "r49",
+   "text": "keep the bar always visible",
+   "accept": [
+    "setBarPersistent",
+    "setBarShowOnHover"
+   ]
+  },
+  {
+   "id": "r50",
+   "text": "only dodge the focused window",
+   "accept": [
+    "setDodgeFocusedOnly"
+   ]
+  },
+  {
+   "id": "r51",
+   "text": "hide the dock badges",
+   "accept": [
+    "setDockBadges"
+   ]
+  },
+  {
+   "id": "r52",
+   "text": "only show the dock on the current desktop",
+   "accept": [
+    "setDockCurrentDesktopOnly"
+   ]
+  },
+  {
+   "id": "r53",
+   "text": "show dock previews on the desktop",
+   "accept": [
+    "setDockPreviewOnDesktop"
+   ]
+  },
+  {
+   "id": "r54",
+   "text": "recolour the dock icons",
+   "accept": [
+    "setDockRecolourIcons"
+   ]
+  },
+  {
+   "id": "r55",
+   "text": "use a bigger font in the shell",
+   "accept": [
+    "setFontScale"
+   ]
+  },
+  {
+   "id": "r56",
+   "text": "change the monospace font",
+   "accept": [],
+   "expect_verdict": "OUT_OF_ONTOLOGY",
+   "note": "upstream removed setFontMonoFamily (dev @ 200ea777, 2026-09-28); the honest expectation is the out-of-ontology verdict, never a confident route to a coincidental tool (e.g. setFontScale)"
+  },
+  {
+   "id": "r57",
+   "text": "more padding everywhere",
+   "accept": [
+    "setPaddingScale"
+   ]
+  },
+  {
+   "id": "r58",
+   "text": "make the corners less round",
+   "accept": [
+    "setRoundingScale"
+   ]
+  },
+  {
+   "id": "r59",
+   "text": "increase the deformation",
+   "accept": [
+    "setDeformScale"
+   ]
+  },
+  {
+   "id": "r60",
+   "text": "enable ambient color",
+   "accept": [
+    "setAmbientColor"
+   ]
+  },
+  {
+   "id": "r61",
+   "text": "lower the ambient opacity",
+   "accept": [
+    "setAmbientOpacity"
+   ]
+  },
+  {
+   "id": "r62",
+   "text": "turn on the blur mask",
+   "accept": [
+    "setBlurMask"
+   ]
+  },
+  {
+   "id": "r63",
+   "text": "turn on islands",
+   "accept": [
+    "setIslands"
+   ]
+  },
+  {
+   "id": "r64",
+   "text": "more transparency layers",
+   "accept": [
+    "setTransparencyLayers"
+   ]
+  },
+  {
+   "id": "r65",
+   "text": "enable transparency",
+   "accept": [
+    "setTransparencyEnabled"
+   ]
+  },
+  {
+   "id": "r66",
+   "text": "notifications should open expanded",
+   "accept": [
+    "setOpenExpanded"
+   ]
+  },
+  {
+   "id": "r67",
+   "text": "make notifications expire",
+   "accept": [
+    "setExpire"
+   ]
+  },
+  {
+   "id": "r68",
+   "text": "show more notifications in a group preview",
+   "accept": [
+    "setGroupPreviewNum"
+   ]
+  },
+  {
+   "id": "r69",
+   "text": "show notifications on the second monitor",
+   "accept": [
+    "setMonitor"
+   ]
+  },
+  {
+   "id": "r70",
+   "text": "put the notifications at the top",
+   "accept": [
+    "setPosition"
+   ]
+  },
+  {
+   "id": "r71",
+   "text": "keep more notifications in history",
+   "accept": [
+    "setNotifsMaxNotifs"
+   ]
+  },
+  {
+   "id": "r72",
+   "text": "clicking a notification should trigger its action",
+   "accept": [
+    "setActionOnClick"
+   ]
+  },
+  {
+   "id": "r73",
+   "text": "hide notifications during fullscreen",
+   "accept": [
+    "setFullscreen"
+   ]
+  },
+  {
+   "id": "r74",
+   "text": "hide the brightness osd",
+   "accept": [
+    "setEnableBrightness"
+   ]
+  },
+  {
+   "id": "r75",
+   "text": "show the volume osd",
+   "accept": [
+    "setEnableVolume",
+    "setOsdEnabled"
+   ]
+  },
+  {
+   "id": "r76",
+   "text": "the osd disappears too fast",
+   "accept": [
+    "setHideDelay"
+   ]
+  },
+  {
+   "id": "r77",
+   "text": "thicker osd hover bar",
+   "accept": [
+    "setOsdHoverThickness"
+   ]
+  },
+  {
+   "id": "r78",
+   "text": "wider osd hover area",
+   "accept": [
+    "setOsdHoverWidth"
+   ]
+  },
+  {
+   "id": "r79",
+   "text": "colorize the media gif",
+   "accept": [
+    "setColorizeMediaGif"
+   ]
+  },
+  {
+   "id": "r80",
+   "text": "show the gpu in the dashboard performance panel",
+   "accept": [
+    "setPerformanceShowGpu"
+   ]
+  },
+  {
+   "id": "r81",
+   "text": "show memory usage in the dashboard",
+   "accept": [
+    "setPerformanceShowMemory"
+   ]
+  },
+  {
+   "id": "r82",
+   "text": "show network usage in the performance widget",
+   "accept": [
+    "setPerformanceShowNetwork"
+   ]
+  },
+  {
+   "id": "r83",
+   "text": "show storage in the dashboard performance section",
+   "accept": [
+    "setPerformanceShowStorage"
+   ]
+  },
+  {
+   "id": "r84",
+   "text": "show the battery in the performance panel",
+   "accept": [
+    "setPerformanceShowBattery"
+   ]
+  },
+  {
+   "id": "r85",
+   "text": "the dashboard appears when I hover",
+   "accept": [
+    "setDashboardShowOnHover"
+   ]
+  },
+  {
+   "id": "r86",
+   "text": "enable the sidebar",
+   "accept": [
+    "setSidebarEnabled"
+   ]
+  },
+  {
+   "id": "r87",
+   "text": "wider sidebar grab area",
+   "accept": [
+    "setGrabWidth"
+   ]
+  },
+  {
+   "id": "r88",
+   "text": "slow down the overview animation",
+   "accept": [
+    "setBaseDuration"
+   ]
+  },
+  {
+   "id": "r89",
+   "text": "turn off overview blur",
+   "accept": [
+    "setEnableOverviewBlur",
+    "setDisableWallpaperBlur"
+   ]
+  },
+  {
+   "id": "r90",
+   "text": "make the overview hover corners active",
+   "accept": [
+    "setHoverTopLeft",
+    "setHoverTopRight",
+    "setHoverBottomLeft",
+    "setHoverBottomRight"
+   ]
+  },
+  {
+   "id": "m01",
+   "text": "make the system tray more compact",
+   "accept": [
+    "setTrayCompact"
+   ]
+  },
+  {
+   "id": "m02",
+   "text": "recolour the tray icons to match my theme",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m04",
+   "text": "bump the text size up a notch",
+   "accept": [
+    "setFontScale",
+    "setFontScaleOffset"
+   ]
+  },
+  {
+   "id": "m05",
+   "text": "make the ambient background more opaque",
+   "accept": [
+    "setAmbientOpacity"
+   ]
+  },
+  {
+   "id": "m06",
+   "text": "give notifications more time before they fade",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m07",
+   "text": "open the app when I click one of its notifications",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m08",
+   "text": "show toasts in the bottom-right corner",
+   "accept": [
+    "setPosition"
+   ]
+  },
+  {
+   "id": "m09",
+   "text": "the volume popup lingers too long",
+   "accept": [
+    "setHideDelay"
+   ]
+  },
+  {
+   "id": "m10",
+   "text": "turn off the overview entirely",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m11",
+   "text": "blur the wallpaper behind the overview",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m12",
+   "text": "stop blurring the wallpaper in the overview",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m13",
+   "text": "turn off the fingerprint reader",
+   "accept": [
+    "setEnableFprint"
+   ]
+  },
+  {
+   "id": "m14",
+   "text": "give me three fingerprint attempts before the password",
+   "accept": [
+    "setMaxFprintTries"
+   ]
+  },
+  {
+   "id": "m15",
+   "text": "move the on-screen lyrics to the centre",
+   "accept": [
+    "setDesktopLyricsPosition"
+   ]
+  },
+  {
+   "id": "m16",
+   "text": "centre the desktop lyrics text",
+   "accept": [
+    "setDesktopLyricsAlignment"
+   ]
+  },
+  {
+   "id": "m17",
+   "text": "hide the decorative shapes on the desktop",
+   "accept": [
+    "setDesktopShapesEnabled"
+   ]
+  },
+  {
+   "id": "m18",
+   "text": "shuffle the wallpaper slideshow order",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m19",
+   "text": "tint the wallpaper to match my colour scheme",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m20",
+   "text": "make the wallpaper tinting stronger",
+   "accept": [
+    "setWallpaperRecolorStrength"
+   ]
+  },
+  {
+   "id": "m21",
+   "text": "hide the audio visualiser on the desktop",
+   "accept": [
+    "setVisualiserEnabled"
+   ]
+  },
+  {
+   "id": "m22",
+   "text": "auto-hide the visualiser when idle",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m23",
+   "text": "colourize the app icons from the wallpaper",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m25",
+   "text": "make the volume step smaller",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m26",
+   "text": "make the brightness step smaller",
+   "accept": [
+    "setBrightnessIncrement"
+   ]
+  },
+  {
+   "id": "m27",
+   "text": "set the corner rounding to 15 px",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m28",
+   "text": "show no more than 6 toasts at once",
+   "accept": [
+    "setMaxToasts"
+   ]
+  },
+  {
+   "id": "m29",
+   "text": "let the bar hide while I'm working",
+   "expect_verdict": "AMBIGUOUS"
+  },
+  {
+   "id": "m30",
+   "text": "set the dock icon size to 56 px",
+   "accept": [
+    "setDockIconSize"
+   ]
+  },
+  {
+   "id": "m31",
+   "text": "raise the max volume to 120 percent",
+   "accept": [
+    "setMaxVolume"
+   ]
+  },
+  {
+   "id": "m33",
+   "text": "keep the screen awake while charging",
+   "accept": [
+    "setShowKeepAwake"
+   ]
+  },
+  {
+   "id": "m34",
+   "text": "keep the screen awake while music is playing",
+   "accept": [
+    "setShowKeepAwake"
+   ]
+  }
+ ]
+}

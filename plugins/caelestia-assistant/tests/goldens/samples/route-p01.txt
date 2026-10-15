@@ -1,0 +1,6 @@
+# golden sample: route-p01
+# argv: ['route', 'make the bar taller', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "ABSTAIN", "resolved_text": "make the bar taller", "ops": [], "confidence": 0.5, "calibrated": false, "questions": ["no addressable request"], "notes": ["[make the bar taller] setBarScale: by how much? (a number, a percent like '20% smaller', or a direction like 'smaller')"], "evidence": ["[make the bar taller] synonym: bar -> taskbar", "[make the bar taller] synonym: bar -> panel", "[make the bar taller] exact noun grammar hit", "[make the bar taller] matched 'bar'"], "candidates": [{"clause": "make the bar taller", "surface": "setBarScale", "kind": "tool", "score": 0.9092, "p": 0.4233}], "session_note": "", "strategy": "lexical"}

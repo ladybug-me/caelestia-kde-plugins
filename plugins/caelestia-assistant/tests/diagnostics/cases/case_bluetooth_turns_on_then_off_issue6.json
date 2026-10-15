@@ -1,0 +1,12 @@
+{
+  "name": "bluetooth turns on then off (#6)",
+  "source": "issue #6 body wording",
+  "input_text": "bluetooth: it turns on then turns off, nothing pairs at all",
+  "expect": {
+    "must_hit": [
+      "CL-kde-bluez-001"
+    ],
+    "must_not_hit": [],
+    "ambiguous_ok": false
+  }
+}

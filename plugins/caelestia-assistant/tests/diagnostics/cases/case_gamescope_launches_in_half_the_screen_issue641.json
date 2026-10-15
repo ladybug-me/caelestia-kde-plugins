@@ -1,0 +1,12 @@
+{
+  "name": "gamescope launches in half the screen (#641)",
+  "source": "issue #641 body wording",
+  "input_text": "games that have gamescope in launch options end up launched in half of the screen, not fullscreen",
+  "expect": {
+    "must_hit": [
+      "CL-kde-fullscreen-001"
+    ],
+    "must_not_hit": [],
+    "ambiguous_ok": false
+  }
+}

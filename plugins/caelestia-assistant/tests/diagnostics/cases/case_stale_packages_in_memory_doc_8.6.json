@@ -1,0 +1,12 @@
+{
+  "name": "stale packages in memory (doc 8.6)",
+  "source": "docs/TROUBLESHOOTING.md section 8.6 verbatim log line",
+  "input_text": "[ERR]   The upgrade replaced packages the running session still has loaded in memory:\n[ERR]     had kwin 6.x / now kwin 6.y",
+  "expect": {
+    "must_hit": [
+      "CL-update-stalepkg-001"
+    ],
+    "must_not_hit": [],
+    "ambiguous_ok": false
+  }
+}

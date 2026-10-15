@@ -1,0 +1,6 @@
+# golden sample: route-p07
+# argv: ['route', 'slow down the animations', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "ABSTAIN", "resolved_text": "slow down the animations", "ops": [], "confidence": 0.5, "calibrated": false, "questions": ["no addressable request"], "notes": ["[slow down the animations] setAnimationSpeed: by how much? (a number, a percent like '20% smaller', or a direction like 'smaller')"], "evidence": ["[slow down the animations] synonym: animations -> animation", "[slow down the animations] exact noun grammar hit", "[slow down the animations] matched 'animation'"], "candidates": [{"clause": "slow down the animations", "surface": "setAnimationSpeed", "kind": "tool", "score": 0.9034, "p": 0.5377}], "session_note": "", "strategy": "lexical"}

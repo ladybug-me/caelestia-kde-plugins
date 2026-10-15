@@ -1,0 +1,14 @@
+{
+  "name": "pragma + dbus error pair (#333)",
+  "source": "issue #333 verbatim error lines",
+  "input_text": "ERROR: Unrecognized pragma \"DefaultEnv QS_NO_RELOAD_POPUP=1\"\nError: org.freedesktop.DBus.Error.UnknownObject\nNo such object path '/component/caelestia'",
+  "expect": {
+    "must_hit": [
+      "CL-runtime-shell-qmlerr-001"
+    ],
+    "must_not_hit": [
+      "CL-runtime-shell-noqt-001"
+    ],
+    "ambiguous_ok": false
+  }
+}

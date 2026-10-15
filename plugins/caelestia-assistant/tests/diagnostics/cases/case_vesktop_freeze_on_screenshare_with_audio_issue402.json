@@ -1,0 +1,12 @@
+{
+  "name": "vesktop freeze on screenshare with audio (#402)",
+  "source": "issue #402 user-pasted debug log (zkde_screencast lines) + freeze wording",
+  "input_text": "DEBUG: WindowScreencastGlobal: zkde_screencast_unstable_v1 bound successfully.\nDEBUG: WindowScreencastRequest: created, nodeId = 149\nit'll freeze vesktop and I'm forced to restart the app whenever I stream with audio",
+  "expect": {
+    "must_hit": [
+      "CL-runtime-shell-vesktop-001"
+    ],
+    "must_not_hit": [],
+    "ambiguous_ok": false
+  }
+}

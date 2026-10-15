@@ -1,0 +1,14 @@
+{
+  "name": "quickshell errors after updating dev (#528)",
+  "source": "issue #528 body wording",
+  "input_text": "I updated to the latest dev version and QuickShell gives an error when I open it.",
+  "expect": {
+    "must_hit": [
+      "CL-runtime-shell-noqt-001"
+    ],
+    "must_not_hit": [
+      "CL-runtime-shell-qmlerr-001"
+    ],
+    "ambiguous_ok": true
+  }
+}

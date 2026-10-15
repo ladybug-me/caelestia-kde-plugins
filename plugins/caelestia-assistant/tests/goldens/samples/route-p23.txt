@@ -1,0 +1,6 @@
+# golden sample: route-p23
+# argv: ['route', 'hide the shutdown button on the lock screen', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "ABSTAIN", "resolved_text": "hide the shutdown button on the lock screen", "ops": [], "confidence": 0.5, "calibrated": false, "questions": ["no addressable request"], "notes": ["[hide the shutdown button on the lock scr] setShowShutdown: on or off? (say 'enable/disable showshutdown')"], "evidence": ["[hide the shutdown button on the lock scr] type gate: off/hide/mute/disable/stop -> bool kept 165 tool candidates", "[hide the shutdown button on the lock scr] name-atom coverage 67%", "[hide the shutdown button on the lock scr] matched 'lock'", "[hide the shutdown button on the lock scr] matched 'shutdown'"], "candidates": [{"clause": "hide the shutdown button on the lock screen", "surface": "setShowShutdown", "kind": "tool", "score": 0.7761, "p": 0.5692}], "session_note": "", "strategy": "lexical"}

@@ -1,0 +1,12 @@
+{
+  "name": "pacman invalid signature (#6 thread paste)",
+  "source": "issue #6 comment with real pacman error paste",
+  "input_text": "error: cachyos-znver4: signature from \"CachyOS <admin@cachyos.org>\" is invalid\nerror: failed to synchronize all databases (invalid or corrupted database (PGP signature))",
+  "expect": {
+    "must_hit": [
+      "CL-install-pacsig-001"
+    ],
+    "must_not_hit": [],
+    "ambiguous_ok": false
+  }
+}

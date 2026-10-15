@@ -1,0 +1,6 @@
+# golden sample: route-r49
+# argv: ['route', 'keep the bar always visible', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "ABSTAIN", "resolved_text": "keep the bar always visible", "ops": [], "confidence": 0.5, "calibrated": false, "questions": ["no addressable request"], "notes": ["keep-clause honored (no change to setBarPersistent)"], "evidence": ["[keep the bar always visible] synonym(query-side): keep -> stored", "[keep the bar always visible] synonym: bar -> taskbar", "[keep the bar always visible] synonym: bar -> panel", "[keep the bar always visible] exact noun grammar hit"], "candidates": [{"clause": "keep the bar always visible", "surface": "setBarPersistent", "kind": "tool", "score": 0.8757, "p": 0.3821}], "session_note": "", "strategy": "lexical"}

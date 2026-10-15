@@ -1,0 +1,12 @@
+{
+  "name": "GPU widget averages all DRM cards (#616)",
+  "source": "issue #616 title/body + /sys/class/drm context",
+  "input_text": "GPU usage and temperature are averaged across every /sys/class/drm/card* device, the widget shows about half of the real dGPU usage which is wrong",
+  "expect": {
+    "must_hit": [
+      "CL-kde-gpumulti-001"
+    ],
+    "must_not_hit": [],
+    "ambiguous_ok": false
+  }
+}

@@ -1,0 +1,542 @@
+{
+ "generator": "assistant.capabilities.shellkb.howto (self-authored corpus)",
+ "license": "CC0-1.0: every entry is original text written for this repository; nothing is copied from man pages, wikis or third-party cheat sheets, so there is no third-party license to clear",
+ "entries": [
+  {
+   "id": "h01",
+   "task": "start the caelestia shell",
+   "keywords": [
+    "start shell launch quickshell session"
+   ],
+   "steps": [
+    "caelestia shell"
+   ],
+   "notes": "Runs the shell in the foreground; on KDE it is supervised by systemd.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h02",
+   "task": "start the shell detached",
+   "keywords": [
+    "start shell detached background daemon"
+   ],
+   "steps": [
+    "caelestia shell -d"
+   ],
+   "notes": "Accepted for parity on KDE; the shell runs under systemd anyway.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h03",
+   "task": "restart the shell after a config change",
+   "keywords": [
+    "restart shell reload config apply"
+   ],
+   "steps": [
+    "caelestia shell -r"
+   ],
+   "notes": "The usual first move after editing shell.json by hand.",
+   "temporal": false,
+   "see": [
+    "h04"
+   ]
+  },
+  {
+   "id": "h04",
+   "task": "stop the shell",
+   "keywords": [
+    "stop shell kill quit terminate"
+   ],
+   "steps": [
+    "caelestia shell -k"
+   ],
+   "notes": "Equivalent: caelestia-shell-ipc quit.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h05",
+   "task": "list the shell's IPC commands",
+   "keywords": [
+    "ipc commands list show"
+   ],
+   "steps": [
+    "caelestia shell -s",
+    "caelestia-shell-ipc show"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h06",
+   "task": "tail the shell log",
+   "keywords": [
+    "log shell output tail debug journal when night yesterday last what was logging"
+   ],
+   "steps": [
+    "caelestia shell -l",
+    "caelestia-shell-ipc log"
+   ],
+   "notes": "Read-only.",
+   "temporal": true,
+   "see": []
+  },
+  {
+   "id": "h07",
+   "task": "check whether the shell is running",
+   "keywords": [
+    "status running check shell alive"
+   ],
+   "steps": [
+    "caelestia-shell-ipc status"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h08",
+   "task": "send a custom IPC call to the shell",
+   "keywords": [
+    "ipc call custom send message"
+   ],
+   "steps": [
+    "caelestia shell nexus openPage 0 8"
+   ],
+   "notes": "Everything after 'shell' is forwarded as the IPC command.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h09",
+   "task": "change the wallpaper and re-derive the color scheme",
+   "keywords": [
+    "wallpaper set background picture image"
+   ],
+   "steps": [
+    "caelestia wallpaper -f /path/to/image.png"
+   ],
+   "notes": "Re-derives the Material You palette from the image.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h10",
+   "task": "set a random wallpaper from a directory",
+   "keywords": [
+    "wallpaper random shuffle directory"
+   ],
+   "steps": [
+    "caelestia wallpaper -r ~/Pictures/wallpapers"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h11",
+   "task": "print the current scheme for a wallpaper without applying it",
+   "keywords": [
+    "wallpaper preview print scheme dry-run"
+   ],
+   "steps": [
+    "caelestia wallpaper -p /path/to/image.png"
+   ],
+   "notes": "Prints what WOULD be produced; changes nothing.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h12",
+   "task": "list the named color schemes",
+   "keywords": [
+    "scheme list names themes"
+   ],
+   "steps": [
+    "caelestia-color scheme list"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h13",
+   "task": "list only scheme flavours, modes or variants",
+   "keywords": [
+    "scheme flavours modes variants names"
+   ],
+   "steps": [
+    "caelestia-color scheme list -f",
+    "caelestia-color scheme list -m",
+    "caelestia-color scheme list -v"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h14",
+   "task": "show the current scheme's name, flavour, mode, variant, intensity",
+   "keywords": [
+    "scheme current get show active"
+   ],
+   "steps": [
+    "caelestia-color scheme get"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h15",
+   "task": "switch to a named scheme, dark mode",
+   "keywords": [
+    "scheme set switch dark light mode theme apply"
+   ],
+   "steps": [
+    "caelestia-color scheme set -n <name> -m dark"
+   ],
+   "notes": "Without arguments nothing happens — the tool needs a name or -r.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h16",
+   "task": "switch to a random named scheme",
+   "keywords": [
+    "scheme random set shuffle theme"
+   ],
+   "steps": [
+    "caelestia-color scheme set -r"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h17",
+   "task": "preview the scheme a change would produce",
+   "keywords": [
+    "scheme preview dry-run would produce"
+   ],
+   "steps": [
+    "caelestia-color scheme set -P -n <name>"
+   ],
+   "notes": "Prints the palette; changes nothing.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h18",
+   "task": "make the desktop more or less saturated (scheme intensity)",
+   "keywords": [
+    "scheme intensity saturation palette"
+   ],
+   "steps": [
+    "caelestia-color scheme set -i 1"
+   ],
+   "notes": "0 is grey, 1 the engine output, 2 the maximum. The whole desktop follows.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h19",
+   "task": "take a screenshot of the whole screen",
+   "keywords": [
+    "screenshot capture screen picture"
+   ],
+   "steps": [
+    "caelestia screenshot"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h20",
+   "task": "take a screenshot of a region",
+   "keywords": [
+    "screenshot region area crop capture"
+   ],
+   "steps": [
+    "caelestia screenshot -r"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h21",
+   "task": "save a screenshot to a path",
+   "keywords": [
+    "screenshot save path file"
+   ],
+   "steps": [
+    "caelestia-screenshot --save /tmp/shot.png"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h22",
+   "task": "record the screen",
+   "keywords": [
+    "record screen video capture"
+   ],
+   "steps": [
+    "caelestia-record"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h23",
+   "task": "record the screen with system audio",
+   "keywords": [
+    "record screen audio sound microphone input"
+   ],
+   "steps": [
+    "caelestia-record -s",
+    "caelestia-record -i"
+   ],
+   "notes": "-s system audio, -i microphone.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h24",
+   "task": "record the screen as a GIF",
+   "keywords": [
+    "record gif animated image"
+   ],
+   "steps": [
+    "caelestia-record --gif"
+   ],
+   "notes": "Converted automatically after the recording stops.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h25",
+   "task": "stop or pause the active recording",
+   "keywords": [
+    "record stop pause end"
+   ],
+   "steps": [
+    "caelestia-record --stop",
+    "caelestia-record -p"
+   ],
+   "notes": "Also: caelestia-record --open opens the recordings folder.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h26",
+   "task": "update the shell to the latest release",
+   "keywords": [
+    "update upgrade shell version install when last recently"
+   ],
+   "steps": [
+    "caelestia update"
+   ],
+   "notes": "Network + reinstall: the shellkb marks this SYSTEM, never suggests running it.",
+   "temporal": true,
+   "see": []
+  },
+  {
+   "id": "h27",
+   "task": "update the shell from the dev branch",
+   "keywords": [
+    "update dev branch version"
+   ],
+   "steps": [
+    "caelestia-update dev"
+   ],
+   "notes": "Only 'main' and 'dev' are allowed branches.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h28",
+   "task": "print the installed shell version",
+   "keywords": [
+    "version print show which"
+   ],
+   "steps": [
+    "caelestia version"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h29",
+   "task": "check for pending updates from the UI",
+   "keywords": [
+    "check updates pending notify"
+   ],
+   "steps": [
+    "caelestia-check-updates"
+   ],
+   "notes": "Normally driven by a systemd timer; honors general.checkUpdates in shell.json.",
+   "temporal": true,
+   "see": []
+  },
+  {
+   "id": "h30",
+   "task": "make a settings change from plain language",
+   "keywords": [
+    "settings change set thinner bar natural language"
+   ],
+   "steps": [
+    "caelestia-assist settings \"make the bar thinner\"",
+    "caelestia-assist settings \"...\" --apply"
+   ],
+   "notes": "Preview first; --apply is the only write gate, with a backup and bounded undo.",
+   "temporal": false,
+   "see": [
+    "h31"
+   ]
+  },
+  {
+   "id": "h31",
+   "task": "undo a settings change made by the assistant",
+   "keywords": [
+    "undo revert restore settings change"
+   ],
+   "steps": [
+    "caelestia-assist settings --undo",
+    "caelestia-assist settings --undo-id <id>"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h32",
+   "task": "browse the settings tools the shell exposes",
+   "keywords": [
+    "tools list settings registry browse"
+   ],
+   "steps": [
+    "caelestia-assist settings --list-tools",
+    "caelestia-assist settings --group bar"
+   ],
+   "notes": "Every tool carries its C++ declaration citation and live QML reader.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h33",
+   "task": "diagnose a log file for known problems",
+   "keywords": [
+    "diagnose log problem error troubleshoot"
+   ],
+   "steps": [
+    "caelestia-assist diagnose /path/to/log"
+   ],
+   "notes": "Deterministic rules first; unmatched lines get Drain template mining.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h34",
+   "task": "search the assistant's offline docs and resolved issues",
+   "keywords": [
+    "search docs retrieval find"
+   ],
+   "steps": [
+    "caelestia-assist search \"bar scale\""
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h35",
+   "task": "ask what changed in my shell config recently",
+   "keywords": [
+    "history changes undo what did i change recently yesterday last night week"
+   ],
+   "steps": [
+    "caelestia-assist settings --history",
+    "caelestia-assist \"what did i change\""
+   ],
+   "notes": "NL undo: 'restore yesterday's theme' style queries work.",
+   "temporal": true,
+   "see": []
+  },
+  {
+   "id": "h36",
+   "task": "check the assistant's own health",
+   "keywords": [
+    "doctor selfcheck health check"
+   ],
+   "steps": [
+    "caelestia-assist doctor",
+    "caelestia-assist selfcheck"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h37",
+   "task": "measure how far the shell config drifted from defaults",
+   "keywords": [
+    "drift config hygiene audit lint"
+   ],
+   "steps": [
+    "caelestia-assist brain drift",
+    "caelestia-assist settings --lint"
+   ],
+   "notes": "",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h38",
+   "task": "read the shell.json the assistant would edit",
+   "keywords": [
+    "shell json config file where location"
+   ],
+   "steps": [
+    "cat ~/.config/caelestia/shell.json"
+   ],
+   "notes": "The assistant never writes it except through the settings --apply gate.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h39",
+   "task": "find which IPC page or widget id to use",
+   "keywords": [
+    "ipc page id widget nexus"
+   ],
+   "steps": [
+    "caelestia shell -s"
+   ],
+   "notes": "The show listing is the source of truth for IPC names.",
+   "temporal": false,
+   "see": []
+  },
+  {
+   "id": "h40",
+   "task": "regenerate the shell CLI grammar this tool ships",
+   "keywords": [
+    "grammar regenerate mine maintain cli"
+   ],
+   "steps": [
+    "python3 -m assistant.capabilities.shellkb.cligrammar --mine"
+   ],
+   "notes": "Maintainer act: needs a caelestia-kde checkout; the result is a reviewed commit.",
+   "temporal": false,
+   "see": []
+  }
+ ]
+}

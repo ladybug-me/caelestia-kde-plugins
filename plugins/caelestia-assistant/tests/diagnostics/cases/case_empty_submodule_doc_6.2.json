@@ -1,0 +1,12 @@
+{
+  "name": "empty submodule (doc 6.2)",
+  "source": "docs/TROUBLESHOOTING.md section 6.2 verbatim log line",
+  "input_text": "[ERR] src/dots is still empty, and the installer cannot deploy without it.",
+  "expect": {
+    "must_hit": [
+      "CL-network-submodule-001"
+    ],
+    "must_not_hit": [],
+    "ambiguous_ok": false
+  }
+}

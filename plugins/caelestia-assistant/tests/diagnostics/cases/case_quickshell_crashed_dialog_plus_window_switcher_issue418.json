@@ -1,0 +1,12 @@
+{
+  "name": "quickshell crashed dialog + window switcher (#418)",
+  "source": "issue #418 body + maintainer diagnosis",
+  "input_text": "a dialogue saying Quickshell has crashed pops up and the window switcher no longer shows windows on any monitor",
+  "expect": {
+    "must_hit": [
+      "CL-runtime-shell-crashrecov-001"
+    ],
+    "must_not_hit": [],
+    "ambiguous_ok": false
+  }
+}

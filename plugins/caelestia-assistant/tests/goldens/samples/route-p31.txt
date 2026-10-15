@@ -1,0 +1,6 @@
+# golden sample: route-p31
+# argv: ['route', 'hide the sidebar', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "PLAN", "resolved_text": "hide the sidebar", "ops": [{"tool": "setSidebarEnabled", "action": "set", "value": false, "raw": "hide the sidebar"}], "confidence": 0.5, "calibrated": false, "questions": [], "notes": [], "evidence": ["[hide the sidebar] type gate: off/hide/mute/disable/stop -> bool kept 165 tool candidates", "[hide the sidebar] on/off cue agrees with toggle setting", "[hide the sidebar] matched 'sidebar'"], "candidates": [{"clause": "hide the sidebar", "surface": "setSidebarEnabled", "kind": "tool", "score": 0.9155, "p": 0.7254}], "session_note": "", "strategy": "lexical", "plan": {"verdict": "INTENT", "file": "<HOME>/config/caelestia/shell.json", "entries": [{"tool": "setSidebarEnabled", "path": "sidebar.enabled", "action": "set", "raw": "hide the sidebar", "old": true, "new": false, "clamped": false, "no_op": false, "note": "key was absent; default assumed"}], "notes": ["target file does not exist; defaults assumed (file will be created on apply)"], "errors": [], "apply_blocked": false}, "learn_hook": {"text": "hide the sidebar", "surface": "setSidebarEnabled", "features": {"lex": 1.0, "sem": 0.2294, "fuzz": 0.4151, "noun": 0.0, "phon": 0.3333, "cue": 0.55, "coverage": 0.0, "struct": 0.161}, "p": 0.7254}}

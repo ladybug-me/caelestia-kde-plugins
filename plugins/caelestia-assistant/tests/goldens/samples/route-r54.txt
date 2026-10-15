@@ -1,0 +1,6 @@
+# golden sample: route-r54
+# argv: ['route', 'recolour the dock icons', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "QUESTION", "resolved_text": "recolour the dock icons", "ops": [], "confidence": 0.5, "calibrated": false, "questions": ["several settings could match: 'setDockIconSize', 'setDockRecolourIcons', 'setWorkspacesMaxWindowIcons' \u2014 which one?"], "notes": ["[recolour the dock icons] setDockIconSize: by how much? (a number, a percent like '20% smaller', or a direction like 'smaller')"], "evidence": ["[recolour the dock icons] synonym: icons -> icon", "[recolour the dock icons] exact noun grammar hit", "[recolour the dock icons] name-atom coverage 50%", "[recolour the dock icons] matched 'dock'"], "candidates": [{"clause": "recolour the dock icons", "surface": "setDockIconSize", "kind": "tool", "score": 0.885, "p": 0.4602}], "session_note": "", "strategy": "lexical"}

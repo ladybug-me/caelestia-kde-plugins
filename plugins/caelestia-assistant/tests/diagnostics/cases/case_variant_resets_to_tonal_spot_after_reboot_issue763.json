@@ -1,0 +1,12 @@
+{
+  "name": "variant resets to Tonal Spot after reboot (#763)",
+  "source": "issue #763 body wording",
+  "input_text": "afther rebooting it quickly changes back to Tonal Spot every time",
+  "expect": {
+    "must_hit": [
+      "CL-config-schemereset-001"
+    ],
+    "must_not_hit": [],
+    "ambiguous_ok": false
+  }
+}

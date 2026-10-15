@@ -1,0 +1,105 @@
+{
+ "note": "AUTHORED by the exponential-build-5 ARENA-BUILDER from registry facts (tools.json ranges/enums/defaults) and rule-pack matchers. Reviewer judgment, not engine output. Negatives/accepts per the build-5 spec.",
+ "items": [
+  {
+   "id": "d01",
+   "text": "build fails: g++: command not found",
+   "expect_rule": "CL-install-buildtools-001"
+  },
+  {
+   "id": "d02",
+   "text": "cc: command not found while compiling the installer",
+   "expect_rule": "CL-install-buildtools-001"
+  },
+  {
+   "id": "d03",
+   "text": "[FATAL] Failed to build the Caelestia installer",
+   "expect_rule": "CL-install-fatal-001"
+  },
+  {
+   "id": "d04",
+   "text": "[ERR] Missing QML module metadata: no qmldir found",
+   "expect_rule": "CL-install-qmlmeta-001"
+  },
+  {
+   "id": "d05",
+   "text": "[FATAL] Line ending normalization step failed",
+   "expect_rule": "CL-install-crlf-001"
+  },
+  {
+   "id": "d06",
+   "text": "error: caelestia-shell: signature from Someone <x@y.z> is invalid\nerror: failed to synchronize all databases",
+   "expect_rule": "CL-install-pacsig-001"
+  },
+  {
+   "id": "d07",
+   "text": "matugen is not installed",
+   "expect_rule": "CL-install-matugen-001"
+  },
+  {
+   "id": "d08",
+   "text": "[ERR] src/dots is still empty after cloning",
+   "expect_rule": "CL-network-submodule-001"
+  },
+  {
+   "id": "d09",
+   "text": "The upgrade replaced packages the running session still has loaded in memory",
+   "expect_rule": "CL-update-stalepkg-001"
+  },
+  {
+   "id": "d10",
+   "text": "quickshell: command not found",
+   "expect_rule": "CL-runtime-shell-nostart-001"
+  },
+  {
+   "id": "d11",
+   "text": "blank screen at login after the update",
+   "expect_rule": "CL-runtime-shell-nostart-001"
+  },
+  {
+   "id": "d12",
+   "text": "Quickshell has crashed and recovered",
+   "expect_rule": "CL-runtime-shell-crashrecov-001"
+  },
+  {
+   "id": "d13",
+   "text": "kde-material-you-colors fights the shell: my scheme resets to Material You colors",
+   "expect_rule": "CL-config-kmycolors-001"
+  },
+  {
+   "id": "d14",
+   "text": "color variant falls back to tonal spot after every reboot",
+   "expect_rule": "CL-config-schemereset-001"
+  },
+  {
+   "id": "d15",
+   "text": "bluetooth turns on then turns off immediately and nothing pairs",
+   "expect_rule": "CL-kde-bluez-001"
+  },
+  {
+   "id": "d16",
+   "text": "taskbar thumbnails not working for open windows after update",
+   "expect_rule": "CL-kde-thumbs-001"
+  },
+  {
+   "id": "d17",
+   "text": "workspace pills not running although the KWin effect is enabled",
+   "expect_rule": "CL-kde-wstrack-001"
+  },
+  {
+   "id": "d18",
+   "text": "gamescope games launch in half of the screen, fullscreen is broken",
+   "expect_rule": "CL-kde-fullscreen-001"
+  },
+  {
+   "id": "d19",
+   "text": "clean the cache to free up space, my disk usage is full",
+   "expect_rule": "CL-folder-cleanup-cache-001"
+  },
+  {
+   "id": "d20",
+   "text": "random apps crash when chromium eats memory",
+   "expect_rule": "CL-runtime-shell-memcrash-001"
+  }
+ ]
+}

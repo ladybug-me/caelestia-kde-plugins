@@ -1,0 +1,6 @@
+# golden sample: route-p40
+# argv: ['route', 'no wallpaper slideshow', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "QUESTION", "resolved_text": "no wallpaper slideshow", "ops": [], "confidence": 0.5, "calibrated": false, "questions": ["several settings could match: 'setSlideshowEnabled', 'setSlideshowRandom', 'setSlideshowInterval' \u2014 which one?"], "notes": ["[no wallpaper slideshow] setSlideshowEnabled: on or off? (say 'enable/disable slideshowenabled')"], "evidence": ["[no wallpaper slideshow] matched 'slideshow'", "[no wallpaper slideshow] matched 'wallpaper'"], "candidates": [{"clause": "no wallpaper slideshow", "surface": "setSlideshowEnabled", "kind": "tool", "score": 0.7153, "p": 0.3353}], "session_note": "", "strategy": "lexical"}

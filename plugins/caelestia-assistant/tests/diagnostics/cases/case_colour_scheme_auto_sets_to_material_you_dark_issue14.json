@@ -1,0 +1,12 @@
+{
+  "name": "colour scheme auto sets to material you dark (#14)",
+  "source": "issue #14 body wording",
+  "input_text": "the colour scheme still changed to Material You Dark everytime quickshell is being reloaded, kde-material-you-colors keeps running",
+  "expect": {
+    "must_hit": [
+      "CL-config-kmycolors-001"
+    ],
+    "must_not_hit": [],
+    "ambiguous_ok": false
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "missing QML module metadata (doc 1.3)",
+  "source": "docs/TROUBLESHOOTING.md section 1.3 verbatim log line",
+  "input_text": "[ERR] Missing QML module metadata: $HOME/.local/lib/qt6/qml/Caelestia/Config/qmldir",
+  "expect": {
+    "must_hit": [
+      "CL-install-qmlmeta-001"
+    ],
+    "must_not_hit": [],
+    "ambiguous_ok": false
+  }
+}
