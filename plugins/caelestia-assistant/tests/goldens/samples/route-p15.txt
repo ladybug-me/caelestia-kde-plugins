@@ -1,0 +1,6 @@
+# golden sample: route-p15
+# argv: ['route', 'use 24 hour time', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "PLAN", "resolved_text": "use 24 hour time", "ops": [{"tool": "setClockFormat", "action": "set", "value": "TwentyFourHour", "raw": "use 24 hour time"}], "confidence": 0.5, "calibrated": false, "questions": ["the wording matches several settings ('setClockFormat', 'setGreeterMode') about equally \u2014 which one?"], "notes": [], "evidence": ["[use 24 hour time] enum value 'hour' present", "[use 24 hour time] matched 'hour'"], "candidates": [{"clause": "use 24 hour time", "surface": "setClockFormat", "kind": "tool", "score": 0.696, "p": 0.5019}], "session_note": "", "strategy": "lexical", "plan": {"verdict": "INTENT", "file": "<HOME>/config/caelestia/shell.json", "entries": [{"tool": "setClockFormat", "path": "services.clockFormat", "action": "set", "raw": "use 24 hour time", "old": "Auto", "new": "TwentyFourHour", "clamped": false, "no_op": false, "note": "key was absent; default assumed"}], "notes": ["target file does not exist; defaults assumed (file will be created on apply)"], "errors": [], "apply_blocked": false}, "learn_hook": {"text": "use 24 hour time", "surface": "setClockFormat", "features": {"lex": 1.0, "sem": 0.0, "fuzz": 0.0, "noun": 0.0, "phon": 0.0, "cue": 0.6, "coverage": 0.0, "struct": 0.0}, "p": 0.5019}}

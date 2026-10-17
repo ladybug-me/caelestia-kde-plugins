@@ -1,0 +1,555 @@
+{
+ "bins": {
+  "caelestia": {
+   "file": "src/bin/caelestia",
+   "options": [],
+   "subcommands": {
+    "help": {
+     "desc": "print this message",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia help"
+    },
+    "install": {
+     "desc": "set up this user's half of the shell",
+     "evidence": "commands table",
+     "options": [
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--help",
+       "section": "",
+       "short": "-h",
+       "takes_value": false
+      }
+     ],
+     "synopsis": "caelestia install"
+    },
+    "record": {
+     "desc": "record the screen",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia record"
+    },
+    "scheme": {
+     "desc": "manage the color scheme",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia scheme"
+    },
+    "screenshot": {
+     "desc": "take a screenshot",
+     "evidence": "commands table",
+     "options": [
+      {
+       "desc": "capture a region instead of the whole screen",
+       "evidence": "case branch",
+       "long": "--region",
+       "short": "-r",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--freeze",
+       "section": "",
+       "short": "-f",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--help",
+       "section": "",
+       "short": "-h",
+       "takes_value": false
+      }
+     ],
+     "synopsis": "caelestia screenshot"
+    },
+    "shell": {
+     "desc": "start the shell, or message the running one",
+     "evidence": "commands table",
+     "options": [
+      {
+       "desc": "start the shell detached. The shell always runs under systemd",
+       "evidence": "case branch",
+       "long": "--daemon",
+       "short": "-d",
+       "takes_value": false
+      },
+      {
+       "desc": "restart the shell",
+       "evidence": "case branch",
+       "long": "--restart",
+       "short": "-r",
+       "takes_value": false
+      },
+      {
+       "desc": "list the shell IPC commands",
+       "evidence": "case branch",
+       "long": "--show",
+       "short": "-s",
+       "takes_value": false
+      },
+      {
+       "desc": "print the shell log",
+       "evidence": "case branch",
+       "long": "--log",
+       "short": "-l",
+       "takes_value": false
+      },
+      {
+       "desc": "stop the shell",
+       "evidence": "case branch",
+       "long": "--kill",
+       "short": "-k",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--help",
+       "section": "",
+       "short": "-h",
+       "takes_value": false
+      }
+     ],
+     "synopsis": "caelestia shell"
+    },
+    "update": {
+     "desc": "update the shell and re-apply the configuration",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia update"
+    },
+    "version": {
+     "desc": "print the version",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia version"
+    },
+    "wallpaper": {
+     "desc": "set the wallpaper and derive the palette from it",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia wallpaper"
+    }
+   },
+   "synopsis": "caelestia <command> [args...]"
+  },
+  "caelestia-check-updates": {
+   "file": "src/bin/caelestia-check-updates",
+   "options": [],
+   "subcommands": {}
+  },
+  "caelestia-color": {
+   "file": "src/bin/caelestia-color",
+   "options": [
+    {
+     "desc": "",
+     "evidence": "case branch",
+     "long": "--help",
+     "section": "",
+     "short": "-h",
+     "takes_value": false
+    }
+   ],
+   "subcommands": {
+    "scheme": {
+     "desc": "",
+     "options": [
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--help",
+       "section": "",
+       "short": "-h",
+       "takes_value": false
+      }
+     ],
+     "synopsis": "caelestia-color scheme"
+    },
+    "scheme get": {
+     "desc": "print the current name, flavour, mode, variant and",
+     "evidence": "commands table",
+     "options": [
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--name",
+       "section": "",
+       "short": "-n",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--flavour",
+       "section": "",
+       "short": "-f",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--mode",
+       "section": "",
+       "short": "-m",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--variant",
+       "section": "",
+       "short": "-v",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--intensity",
+       "section": "",
+       "short": "-i",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--help",
+       "section": "",
+       "short": "-h",
+       "takes_value": false
+      }
+     ],
+     "synopsis": "caelestia-color scheme get"
+    },
+    "scheme list": {
+     "desc": "print the named schemes: the tree, or with -n/-f/-m/-v",
+     "evidence": "commands table",
+     "options": [
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--flat",
+       "section": "",
+       "short": null,
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--names",
+       "section": "",
+       "short": "-n",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--flavours",
+       "section": "",
+       "short": "-f",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--modes",
+       "section": "",
+       "short": "-m",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--variants",
+       "section": "",
+       "short": "-v",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--help",
+       "section": "",
+       "short": "-h",
+       "takes_value": false
+      }
+     ],
+     "synopsis": "caelestia-color scheme list"
+    },
+    "scheme set": {
+     "desc": "switch scheme. Without an argument nothing happens:",
+     "evidence": "commands table",
+     "options": [
+      {
+       "desc": "a random named scheme",
+       "evidence": "case branch",
+       "long": "--random",
+       "short": "-r",
+       "takes_value": false
+      },
+      {
+       "desc": "print the scheme this would produce and change",
+       "evidence": "case branch",
+       "long": "--preview",
+       "short": "-P",
+       "takes_value": false
+      },
+      {
+       "desc": "keep the mode and variant instead of letting the",
+       "evidence": "case branch",
+       "long": "--no-smart",
+       "short": "-N",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--name",
+       "section": "",
+       "short": "-n",
+       "takes_value": true
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--flavour",
+       "section": "",
+       "short": "-f",
+       "takes_value": true
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--mode",
+       "section": "",
+       "short": "-m",
+       "takes_value": true
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--variant",
+       "section": "",
+       "short": "-v",
+       "takes_value": true
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--intensity",
+       "section": "",
+       "short": "-i",
+       "takes_value": true
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--notify",
+       "section": "",
+       "short": null,
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--help",
+       "section": "",
+       "short": "-h",
+       "takes_value": false
+      }
+     ],
+     "synopsis": "caelestia-color scheme set"
+    },
+    "wallpaper": {
+     "desc": "",
+     "options": [
+      {
+       "desc": "keep the mode and variant instead of letting the",
+       "evidence": "case branch",
+       "long": "--no-smart",
+       "short": "-N",
+       "takes_value": false
+      },
+      {
+       "desc": "accepted; nothing here filters by size",
+       "evidence": "case branch",
+       "long": "--no-filter",
+       "short": "-n",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--file",
+       "section": "",
+       "short": "-f",
+       "takes_value": true
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--print",
+       "section": "",
+       "short": "-p",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--random",
+       "section": "",
+       "short": "-r",
+       "takes_value": false
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--threshold",
+       "section": "",
+       "short": "-t",
+       "takes_value": true
+      },
+      {
+       "desc": "",
+       "evidence": "case branch",
+       "long": "--help",
+       "section": "",
+       "short": "-h",
+       "takes_value": false
+      }
+     ],
+     "synopsis": "caelestia-color wallpaper"
+    }
+   }
+  },
+  "caelestia-record": {
+   "file": "src/bin/caelestia-record",
+   "options": [
+    {
+     "desc": "Record system audio (default_output)",
+     "evidence": "usage-table row",
+     "long": "--sound",
+     "section": "",
+     "short": "-s",
+     "takes_value": false
+    },
+    {
+     "desc": "Record microphone audio (default_input)",
+     "evidence": "usage-table row",
+     "long": "--input",
+     "section": "",
+     "short": "-i",
+     "takes_value": false
+    },
+    {
+     "desc": "Record as GIF (auto-convert after stop)",
+     "evidence": "usage-table row",
+     "long": "--gif",
+     "section": "",
+     "short": null,
+     "takes_value": false
+    },
+    {
+     "desc": "Toggle pause/resume",
+     "evidence": "usage-table row",
+     "long": "--pause",
+     "short": "-p",
+     "takes_value": null
+    },
+    {
+     "desc": "Stop recording",
+     "evidence": "usage-table row",
+     "long": "--stop",
+     "short": null,
+     "takes_value": null
+    },
+    {
+     "desc": "Open recordings folder",
+     "evidence": "usage-table row",
+     "long": "--open",
+     "short": null,
+     "takes_value": null
+    }
+   ],
+   "subcommands": {
+    "start": {
+     "desc": "Start recording (no audio)",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia-record start"
+    }
+   },
+   "synopsis": "caelestia-record [start] [-s|--sound] [-i|--input] [--gif] | --pause | --stop | --open"
+  },
+  "caelestia-screenshot": {
+   "file": "src/bin/caelestia-screenshot",
+   "options": [],
+   "subcommands": {},
+   "synopsis": "caelestia-screenshot --save PATH"
+  },
+  "caelestia-shell-ipc": {
+   "file": "src/bin/caelestia-shell-ipc",
+   "options": [],
+   "subcommands": {
+    "call": {
+     "desc": "Send a custom IPC call",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia-shell-ipc call"
+    },
+    "log": {
+     "desc": "Print the shell log",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia-shell-ipc log"
+    },
+    "quit": {
+     "desc": "Gracefully stop the running shell",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia-shell-ipc quit"
+    },
+    "restart": {
+     "desc": "Stop and restart the shell",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia-shell-ipc restart"
+    },
+    "show": {
+     "desc": "List available IPC commands",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia-shell-ipc show"
+    },
+    "start": {
+     "desc": "Launch the shell in the background",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia-shell-ipc start"
+    },
+    "status": {
+     "desc": "Check whether the shell is running",
+     "evidence": "commands table",
+     "options": [],
+     "synopsis": "caelestia-shell-ipc status"
+    }
+   },
+   "synopsis": "caelestia-shell-ipc <command> [args...]"
+  },
+  "caelestia-update": {
+   "file": "src/bin/caelestia-update",
+   "options": [],
+   "subcommands": {}
+  }
+ },
+ "generator": "assistant.capabilities.shellkb.cligrammar.mine",
+ "note": "induced from upstream FILE TEXT (usage heredocs, echo usage tables, one-line usage strings, case option dispatch). No binary was executed. Every example is SUGGESTED_NOT_EXECUTED.",
+ "upstream": {
+  "checkout": "caelestia-kde",
+  "commit": "e34b6957fad5"
+ }
+}

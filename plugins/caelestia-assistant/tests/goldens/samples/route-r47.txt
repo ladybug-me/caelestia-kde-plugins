@@ -1,0 +1,6 @@
+# golden sample: route-r47
+# argv: ['route', 'give the clock a background', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "ABSTAIN", "resolved_text": "give the clock a background", "ops": [], "confidence": 0.5, "calibrated": false, "questions": ["no addressable request"], "notes": ["[give the clock a background] setClockBackground: on or off? (say 'enable/disable clockbackground')"], "evidence": ["[give the clock a background] synonym: background -> wallpaper", "[give the clock a background] name-atom coverage 67%", "[give the clock a background] matched 'background'", "[give the clock a background] matched 'clock'"], "candidates": [{"clause": "give the clock a background", "surface": "setClockBackground", "kind": "tool", "score": 0.8077, "p": 0.3915}], "session_note": "", "strategy": "lexical"}

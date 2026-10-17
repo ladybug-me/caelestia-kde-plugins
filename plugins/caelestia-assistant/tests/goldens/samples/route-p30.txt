@@ -1,0 +1,6 @@
+# golden sample: route-p30
+# argv: ['route', 'less padding', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "PLAN", "resolved_text": "less padding", "ops": [{"tool": "setPaddingScale", "action": "step", "value": -1, "raw": "less padding"}], "confidence": 0.5, "calibrated": false, "questions": [], "notes": [], "evidence": ["[less padding] type gate: direction -> numeric kept 89 tool candidates", "[less padding] exact noun grammar hit", "[less padding] direction cue agrees with numeric setting", "[less padding] matched 'padd'"], "candidates": [{"clause": "less padding", "surface": "setPaddingScale", "kind": "tool", "score": 1.0067, "p": 0.7676}], "session_note": "", "strategy": "lexical", "plan": {"verdict": "INTENT", "file": "<HOME>/config/caelestia/shell.json", "entries": [{"tool": "setPaddingScale", "path": "appearance.padding.scale", "action": "step", "raw": "less padding", "old": 1.0, "new": 0.9, "clamped": false, "no_op": false, "note": "step less padding (-0.1); key was absent; default assumed"}], "notes": ["target file does not exist; defaults assumed (file will be created on apply)"], "errors": [], "apply_blocked": false}, "learn_hook": {"text": "less padding", "surface": "setPaddingScale", "features": {"lex": 1.0, "sem": 0.6189, "fuzz": 0.3696, "noun": 1.0, "phon": 0.5, "cue": 0.55, "coverage": 0.0, "struct": 0.0}, "p": 0.7676}}

@@ -1,0 +1,6 @@
+# golden sample: route-r50
+# argv: ['route', 'only dodge the focused window', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "ABSTAIN", "resolved_text": "only dodge the focused window", "ops": [], "confidence": 0.5, "calibrated": false, "questions": ["no addressable request"], "notes": ["[only dodge the focused window] setDodgeFocusedOnly: on or off? (say 'enable/disable dodgefocusedonly')"], "evidence": ["[only dodge the focused window] name-atom coverage 75%", "[only dodge the focused window] matched 'dodge'", "[only dodge the focused window] matched 'focus'", "[only dodge the focused window] matched 'only'"], "candidates": [{"clause": "only dodge the focused window", "surface": "setDodgeFocusedOnly", "kind": "tool", "score": 0.8097, "p": 0.5025}], "session_note": "", "strategy": "lexical"}

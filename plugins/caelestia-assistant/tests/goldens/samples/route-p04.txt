@@ -1,0 +1,6 @@
+# golden sample: route-p04
+# argv: ['route', 'turn off blur', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "PLAN", "resolved_text": "turn off blur", "ops": [{"tool": "setBlurEnabled", "action": "set", "value": false, "raw": "turn off blur"}], "confidence": 0.5, "calibrated": false, "questions": [], "notes": [], "evidence": ["[turn off blur] type gate: off/hide/mute/disable/stop -> bool kept 165 tool candidates", "[turn off blur] exact noun grammar hit", "[turn off blur] on/off cue agrees with toggle setting", "[turn off blur] matched 'blur'"], "candidates": [{"clause": "turn off blur", "surface": "setBlurEnabled", "kind": "tool", "score": 0.951, "p": 0.4733}], "session_note": "", "strategy": "lexical", "plan": {"verdict": "INTENT", "file": "<HOME>/config/caelestia/shell.json", "entries": [{"tool": "setBlurEnabled", "path": "appearance.blur", "action": "set", "raw": "turn off blur", "old": true, "new": false, "clamped": false, "no_op": false, "note": "key was absent; default assumed"}], "notes": ["target file does not exist; defaults assumed (file will be created on apply)"], "errors": [], "apply_blocked": false}, "learn_hook": {"text": "turn off blur", "surface": "setBlurEnabled", "features": {"lex": 1.0, "sem": 0.3379, "fuzz": 0.1496, "noun": 1.0, "phon": 0.3333, "cue": 0.55, "coverage": 0.0, "struct": 0.0}, "p": 0.4733}}

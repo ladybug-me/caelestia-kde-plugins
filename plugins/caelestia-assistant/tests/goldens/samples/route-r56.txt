@@ -1,0 +1,6 @@
+# golden sample: route-r56
+# argv: ['route', 'change the monospace font', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "ABSTAIN", "resolved_text": "change the monospace font", "ops": [], "confidence": 0.5, "calibrated": false, "questions": ["no addressable request"], "notes": ["[change the monospace font] setFontScale: by how much? (a number, a percent like '20% smaller', or a direction like 'smaller')"], "evidence": ["[change the monospace font] typo: change -> chang (edit distance 1)", "[change the monospace font] exact noun grammar hit", "[change the monospace font] matched 'font'"], "candidates": [{"clause": "change the monospace font", "surface": "setFontScale", "kind": "tool", "score": 0.8299, "p": 0.6092}], "session_note": "", "strategy": "lexical"}

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# caelestia-assist - on-device assistant for caelestia-kde.
+#
+# Routes to every assistant module (see `caelestia-assist --help`). Nothing it
+# runs executes commands, touches the network, or edits config files, except
+# the explicitly gated writes documented by each module (settings --apply,
+# issue draft --confirm, brain ledger/state files).
+#
+# Usage:
+#   caelestia-assist diagnose <file>            diagnose text from a file
+#   cat journal.log | caelestia-assist diagnose -
+#   caelestia-assist selfcheck                  validate rules + import policy
+#   caelestia-assist brain organize ~/notes     lean intelligence layer
+#   echo '{"op":"ledger_list"}' | caelestia-assist api
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
+
+if ! command -v python3 >/dev/null 2>&1; then
+    echo "caelestia-assist: python3 is required" >&2
+    exit 1
+fi
+
+export PYTHONPATH="${REPO_ROOT}${PYTHONPATH:+:${PYTHONPATH}}"
+exec python3 -m assistant.hub "$@"

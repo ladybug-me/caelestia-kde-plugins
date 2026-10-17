@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "ruleset": "caelestia-layer1-runtime",
+  "provenance": {
+    "generated_from": ["docs/TROUBLESHOOTING.md sections 3.1, 3.3.1, 4.1", "issues #333, #528, #418, #461, #402"],
+    "repo_commit": "f91f4ec9"
+  },
+  "rules": [
+    {
+      "id": "CL-runtime-shell-nostart-001",
+      "title": "Widgets never appear / shell does not start after login",
+      "category": "runtime-shell",
+      "severity": "critical",
+      "confidence": "deterministic",
+      "matchers": {
+        "anyOf": [
+          { "type": "text_regex", "pattern": "quickshell: command not found" },
+          { "type": "text_substring", "value": "blank screen at login", "case_insensitive": true },
+          { "type": "text_substring", "value": "widgets not appearing", "case_insensitive": true },
+          {
+            "type": "cmd_output",
+            "command": "systemctl --user is-enabled caelestia-shell.service",
+            "pattern": "disabled"
+          }
+        ]
+      },
+      "fix": [
+        { "text": "Check the user unit state and whether it is enabled.", "command": "systemctl --user status caelestia-shell.service && systemctl --user is-enabled caelestia-shell.service", "command_risk": "READ_ONLY" },
+        { "text": "Quickstart check: log out and back in, or start the shell directly.", "command": "systemctl --user start caelestia-shell.service", "command_risk": "STATE_CHANGING" },
+        { "text": "If it still fails, run the shell in debug mode in a terminal and read the first error line.", "command": "QML2_IMPORT_PATH=$HOME/.local/lib/qt6/qml quickshell -d -n -p ~/.config/quickshell/caelestia/shell.qml", "command_risk": "STATE_CHANGING", "warning": "This replaces the service-managed shell until you stop it; prefer the systemd unit afterwards." }
+      ],
+      "references": [
+        { "kind": "doc", "anchor": "#31-shell-doesnt-start-after-login" },
+        { "kind": "issue", "number": 528, "state": "closed" }
+      ]
+    },
+    {
+      "id": "CL-runtime-shell-qmlerr-001",
+      "title": "Unrecognized pragma / DBus UnknownObjectPath after an update (fixed on dev — update the shell)",
+      "category": "runtime-shell",
+      "severity": "high",
+      "confidence": "deterministic",
+      "matchers": {
+        "allOf": [
+          { "anyOf": [
+            { "type": "text_regex", "pattern": "Unrecognized pragma \\\"DefaultEnv QS_NO_RELOAD_POPUP=1\\\"" },
+            { "type": "text_regex", "pattern": "org\\.freedesktop\\.DBus\\.Error\\.UnknownObject" },
+            { "type": "text_substring", "value": "No such object path '/component/caelestia'" }
+          ] }
+        ]
+      },
+      "fix": [
+        { "text": "This exact pair of errors was fixed on the dev branch. Update through the shell: Nexus -> Updates -> branch 'dev' -> Install Updates." },
+        { "text": "Or from a terminal:", "command": "bash update.sh", "command_risk": "STATE_CHANGING" },
+        { "text": "Restart through the unit afterwards.", "command": "systemctl --user restart caelestia-shell.service", "command_risk": "STATE_CHANGING" }
+      ],
+      "references": [
+        { "kind": "issue", "number": 333, "state": "closed" }
+      ]
+    },
+    {
+      "id": "CL-runtime-shell-noqt-001",
+      "title": "Quickshell errors/won't open right after updating to latest dev — reinstall the quickshell binary",
+      "category": "runtime-shell",
+      "severity": "high",
+      "confidence": "probable",
+      "matchers": {
+        "allOf": [
+          { "type": "text_regex", "pattern": "(updated|upgraded).{0,60}(quickshell|dev version)", "case_insensitive": true },
+          { "type": "text_regex", "pattern": "(error|won'?t open|does not open|fails to open|crash)", "case_insensitive": true }
+        ]
+      },
+      "fix": [
+        { "text": "In the reported case the quickshell binary itself was stale/corrupt after the update; reinstalling it fixed it.", "command": "sudo pacman -R quickshell-git && sudo pacman -S quickshell-git", "command_risk": "PRIVILEGED", "warning": "Removes and reinstalls the quickshell package (AUR name may differ on your system — check 'pacman -Qs quickshell' first).", "undo": "paru -S aur/quickshell-git" },
+        { "text": "Check which quickshell package you actually have before removing anything.", "command": "pacman -Qs quickshell", "command_risk": "READ_ONLY" },
+        { "text": "Then restart the shell unit.", "command": "systemctl --user restart caelestia-shell.service", "command_risk": "STATE_CHANGING" }
+      ],
+      "clarify_probe": "Paste the exact first error line from 'journalctl --user -u caelestia-shell -n 50' — it separates this from the pragma error rule.",
+      "references": [{ "kind": "issue", "number": 528, "state": "closed" }]
+    },
+    {
+      "id": "CL-runtime-shell-crashrecov-001",
+      "title": "'Quickshell has crashed' dialog / window switcher stops listing windows (KWinActiveWindowBridge crash)",
+      "category": "runtime-shell",
+      "severity": "critical",
+      "confidence": "deterministic",
+      "matchers": {
+        "anyOf": [
+          { "type": "text_substring", "value": "Quickshell has crashed", "case_insensitive": true },
+          { "type": "text_substring", "value": "window switcher no longer shows windows", "case_insensitive": true },
+          { "type": "text_regex", "pattern": "kwinactivewindowbridge.{0,40}crash", "case_insensitive": true }
+        ]
+      },
+      "fix": [
+        { "text": "Restart the shell through the systemd unit (the clean path — same environment it started with).", "command": "systemctl --user restart caelestia-shell.service", "command_risk": "STATE_CHANGING" },
+        { "text": "If the unit restart hangs, force-stop the shell processes first, then restart.", "command": "killall quickshell; killall qs; systemctl --user restart caelestia-shell.service", "command_risk": "PRIVILEGED", "warning": "Kills the shell processes; any unsaved shell-side state is lost.", "undo": "systemctl --user start caelestia-shell.service" },
+        { "text": "Only as a last resort (config corruption suspected), reset the shell config — this wipes your Nexus customizations.", "command": "rm -rf ~/.config/caelestia ~/.config/quickshell/caelestia", "command_risk": "DESTRUCTIVE", "warning": "This is the documented full reset: ALL shell settings, keybinds and AI config return to defaults. Back up ~/.config/caelestia first.", "undo": "Restore the backup you made before running this." }
+      ],
+      "references": [{ "kind": "issue", "number": 418, "state": "closed" }]
+    },
+    {
+      "id": "CL-runtime-shell-memcrash-001",
+      "title": "Random app crashes (Chromium/Electron, Discord, Steam) alongside the shell — memory pressure pattern",
+      "category": "runtime-shell",
+      "severity": "high",
+      "confidence": "probable",
+      "matchers": {
+        "allOf": [
+          { "type": "text_regex", "pattern": "random(ly)?\\s+(apps?\\s+)?crash", "case_insensitive": true },
+          { "type": "text_regex", "pattern": "chromium|chrome|spotify|discord|steam|vesktop|helium", "case_insensitive": true }
+        ]
+      },
+      "fix": [
+        { "text": "In the resolved report this was the shell's memory growth; updating to latest dev plus keeping Live previews and the overview OFF stopped it." },
+        { "text": "Measure before changing anything — is the shell process actually growing?", "command": "systemd-cgtop -m; grep VmRSS /proc/$(pgrep -n quickshell)/status; systemctl show user@$(id -u).service -p MemoryPeak", "command_risk": "READ_ONLY" },
+        { "text": "Update to latest dev (Nexus -> Updates, branch dev), then keep bar 'Live window previews' and Overview disabled until the next release." }
+      ],
+      "clarify_probe": "Does 'systemd-cgtop -m' show the user slice climbing into swap during the crashes? (Paste the output.)",
+      "references": [{ "kind": "issue", "number": 461, "state": "closed" }]
+    },
+    {
+      "id": "CL-runtime-shell-vesktop-001",
+      "title": "Vesktop/Discord freezes when screen sharing or camera turns on (KWin screencast conflict)",
+      "category": "runtime-shell",
+      "severity": "high",
+      "confidence": "deterministic",
+      "matchers": {
+        "allOf": [
+          { "type": "text_regex", "pattern": "vesktop|discord|screen.?shar|screenshar|webcam|camera", "case_insensitive": true },
+          { "anyOf": [
+            { "type": "text_regex", "pattern": "zkde_screencast_unstable_v1" },
+            { "type": "text_substring", "value": "freeze", "case_insensitive": true },
+            { "type": "text_substring", "value": "freezes vesktop", "case_insensitive": true }
+          ] }
+        ]
+      },
+      "fix": [
+        { "text": "Disable live window previews: Nexus -> Taskbar -> 'Live window previews' toggle OFF." },
+        { "text": "Or set it directly in the shell settings (opens an editor; the shell applies it live).", "command": "$EDITOR ~/.config/caelestia/shell.json   # set \"bar\": { \"livePreviews\": false }", "command_risk": "STATE_CHANGING" },
+        { "text": "Restart through the systemd unit so the change lands in the environment the shell started with.", "command": "systemctl --user restart caelestia-shell.service", "command_risk": "STATE_CHANGING", "warning": "Do NOT substitute 'caelestia shell -d': daemonising points the shell's stdio at /dev/null and apps launched from the shell inherit a dead stdout — that is the exact Vesktop deadlock from the issue." }
+      ],
+      "references": [
+        { "kind": "doc", "anchor": "#331-screen-sharing--camera-freezes-vesktop-or-other-apps" },
+        { "kind": "issue", "number": 402, "state": "closed", "closing_pr": 586 }
+      ]
+    },
+    {
+      "id": "CL-runtime-lockscreen-lockpkg-001",
+      "title": "Stock Breeze lock screen appears instead of the Caelestia one",
+      "category": "runtime-lockscreen",
+      "severity": "medium",
+      "confidence": "deterministic",
+      "matchers": {
+        "anyOf": [
+          { "type": "text_regex", "pattern": "(stock )?breeze lock screen", "case_insensitive": true },
+          {
+            "type": "cmd_output",
+            "command": "kreadconfig6 --file plasmashellrc --group Shell --key ShellPackage",
+            "pattern": "org\\.kde\\.plasma\\.desktop|breeze"
+          }
+        ]
+      },
+      "fix": [
+        { "text": "Point the Plasma shell package back at caelestia and clear the greeter theme override.", "command": "kwriteconfig6 --file plasmashellrc --group Shell --key ShellPackage caelestia.desktop", "command_risk": "STATE_CHANGING" },
+        { "text": "Remove the stale greeter theme key.", "command": "kwriteconfig6 --file kscreenlockerrc --group Greeter --key Theme --delete", "command_risk": "STATE_CHANGING" },
+        { "text": "Log out and back in — the autostart script self-heals the lock screen on the next login." }
+      ],
+      "references": [{ "kind": "doc", "anchor": "#41-lock-screen-greeter-diagnostic" }]
+    }
+  ]
+}

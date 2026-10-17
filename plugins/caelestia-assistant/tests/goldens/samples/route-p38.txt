@@ -1,0 +1,6 @@
+# golden sample: route-p38
+# argv: ['route', 'always show minimized windows', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "EXPLAIN", "resolved_text": "always show minimized windows", "ops": [{"tool": "setShowMinimized", "action": "set", "value": true, "raw": "always show minimized windows"}], "confidence": 0.5, "calibrated": false, "questions": [], "notes": ["no exposed magnitude for this setting \u2014 explaining instead of planning a no-op"], "evidence": ["[always show minimized windows] on/off cue agrees with toggle setting", "[always show minimized windows] matched 'minimiz'"], "candidates": [{"clause": "always show minimized windows", "surface": "setShowMinimized", "kind": "tool", "score": 0.9355, "p": 0.5292}], "session_note": "", "strategy": "lexical", "explain": {"ok": true, "absence": true, "answer": "tabSwitch.showMinimized is on/off only \u2014 there is no strength to change. no magnitude control exists in this family.", "cites": [], "spec": {"name": "setShowMinimized", "path": "tabSwitch.showMinimized", "kind": "bool"}, "nearest": []}}

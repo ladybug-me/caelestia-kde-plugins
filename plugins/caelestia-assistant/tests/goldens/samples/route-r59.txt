@@ -1,0 +1,6 @@
+# golden sample: route-r59
+# argv: ['route', 'increase the deformation', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "OUT_OF_ONTOLOGY", "resolved_text": "increase the deformation", "ops": [], "confidence": 0.338, "calibrated": null, "questions": ["that's outside the settings I know about \u2014 I can change shell settings, explain why something looks a certain way, search the docs, diagnose logs, or answer math/logic questions"], "notes": [], "evidence": [], "candidates": [{"clause": "increase the deformation", "surface": "setBaseDuration", "kind": "tool", "score": 0.1847}, {"clause": "increase the deformation", "surface": "setAudioIncrement", "kind": "tool", "score": 0.1762}, {"clause": "increase the deformation", "surface": "setAnimationSpeed", "kind": "tool", "score": 0.1744}], "session_note": "", "strategy": "", "suggestions": ["SUGGESTED_NOT_EXECUTED: search the docs \u2014 caelestia-assist search \"...\"", "SUGGESTED_NOT_EXECUTED: diagnose a log \u2014 caelestia-assist diagnose <file>", "SUGGESTED_NOT_EXECUTED: math/logic \u2014 caelestia-assist do \"...\""], "abstain_gap": {"clause": "increase the deformation", "top": "setBaseDuration", "top_score": 0.1847, "runner_up": "setAudioIncrement", "runner_up_score": 0.1762, "gap": 0.0085}}

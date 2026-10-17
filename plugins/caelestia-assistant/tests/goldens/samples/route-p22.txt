@@ -1,0 +1,6 @@
+# golden sample: route-p22
+# argv: ['route', 'lock the screen when the shell starts', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "ABSTAIN", "resolved_text": "lock the screen when the shell starts", "ops": [], "confidence": 0.5, "calibrated": false, "questions": ["no addressable request"], "notes": ["[lock the screen when the shell starts] setLockOnStartup: on or off? (say 'enable/disable lockonstartup')"], "evidence": ["[lock the screen when the shell starts] structural pattern hit", "[lock the screen when the shell starts] matched 'lock'"], "candidates": [{"clause": "lock the screen when the shell starts", "surface": "setLockOnStartup", "kind": "tool", "score": 0.8, "p": 0.452}], "session_note": "", "strategy": "lexical"}

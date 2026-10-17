@@ -1,0 +1,6 @@
+# golden sample: route-r48
+# argv: ['route', 'make the bar easier to drag', '--json']
+# rc: 0
+
+--- stdout ---
+{"verdict": "QUESTION", "resolved_text": "make the bar easier to drag", "ops": [], "confidence": 0.5, "calibrated": false, "questions": ["several settings could match: 'setBarDragThreshold', 'setBarPosition', 'setBarScale' \u2014 which one?"], "notes": ["[make the bar easier to drag] setBarDragThreshold: by how much? (a number, a percent like '20% smaller', or a direction like 'smaller')"], "evidence": ["[make the bar easier to drag] synonym: bar -> taskbar", "[make the bar easier to drag] synonym: bar -> panel", "[make the bar easier to drag] name-atom coverage 67%", "[make the bar easier to drag] matched 'bar'"], "candidates": [{"clause": "make the bar easier to drag", "surface": "setBarDragThreshold", "kind": "tool", "score": 0.8009, "p": 0.3437}], "session_note": "", "strategy": "lexical"}
