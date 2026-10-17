@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "ruleset": "known-regressions",
+  "provenance": {
+    "generated_from": "Issue #120 Phase 4.4: deterministic rules fingerprinting two real, documented upstream regressions. Rule 1 cites upstream issue #629 (installer flips ccache in /etc/makepkg.conf permanently; closed 2026-09-06) - verified against the upstream issue body. Rule 2 fingerprints the dual-updater state-desync symptom; the mission brief called it '#818', but upstream issue #818 is unrelated ('CAELESTIA-KDE OVERHAUL', a PR-template issue) - the actual, verified issue is #565 ('Two independent update mechanisms share version-tracking state but pull from different repo checkouts', still OPEN), so the rule cites #565 and the discrepancy is recorded in the CHANGELOG.",
+    "repo_commit": "issue-120-phase-4"
+  },
+  "rules": [
+    {
+      "id": "CL-regression-ccache-629",
+      "title": "AUR/makepkg builds changed behavior after Caelestia: the installer enabled ccache system-wide (old installers, unreverted on uninstall)",
+      "category": "install",
+      "severity": "medium",
+      "confidence": "deterministic",
+      "matchers": {
+        "allOf": [
+          { "anyOf": [
+            { "type": "text_regex", "pattern": "(?i)(aur|makepkg).{0,100}(slow|cache miss|disk space|build time|behav)", "case_insensitive": true },
+            { "type": "text_regex", "pattern": "(?i)makepkg\\.conf.{0,100}(changed|modif|ccache|enabled)", "case_insensitive": true },
+            { "type": "text_substring", "value": "!ccache/ccache" }
+          ] },
+          { "type": "text_regex", "pattern": "(?i)ccache|makepkg", "case_insensitive": true }
+        ]
+      },
+      "fix": [
+        { "text": "Upstream issue #629 (closed 2026-09-06): Caelestia's installer ran `sed -i 's/!ccache/ccache/' /etc/makepkg.conf` once, silently, and uninstall never reverted it. If you never enabled ccache yourself, check the file:", "command": "grep BUILDENV /etc/makepkg.conf", "command_risk": "READ_ONLY" },
+        { "text": "To re-disable it (adjust the exact BUILDENV syntax to your file):", "command": "sudo sed -i 's/^BUILDENV=(\\([^)]*\\)ccache /\\1!ccache /' /etc/makepkg.conf", "command_risk": "PRIVILEGED", "warning": "Uses sudo and edits a system-wide file; review the line first with the grep above." },
+        { "text": "Note: older uninstallers never touched /etc/makepkg.conf, so this system-wide change outlives Caelestia. Nothing in this assistant executes any of this; these are inert suggestions only." }
+      ],
+      "clarify_probe": "Paste the BUILDENV line from /etc/makepkg.conf (grep BUILDENV /etc/makepkg.conf) - if ccache is already prefixed with !, this rule is not your answer.",
+      "references": [
+        { "kind": "issue", "number": 629, "state": "closed" }
+      ]
+    },
+    {
+      "id": "CL-regression-dualupdater-565",
+      "title": "Update state desync: Nexus pending-commit count does not match your clone / uncommitted changes lost after 'Install Updates' (dual-updater symptom, PRE-fix versions)",
+      "category": "update",
+      "severity": "high",
+      "confidence": "probable",
+      "matchers": {
+        "allOf": [
+          { "type": "text_regex", "pattern": "(?i)(nexus|install updates|updates page|check.updates|updater).{0,140}(pending|count|mismatch|wrong|stale|doesn'?t match|lost|overwrote|disappeared)", "case_insensitive": true },
+          { "anyOf": [
+            { "type": "text_regex", "pattern": "(?i)(uncommitted|local|my).{0,40}(changes?|edits?|work).{0,80}(lost|gone|overwritten|discarded|reverted)", "case_insensitive": true },
+            { "type": "text_regex", "pattern": "(?i)current_commit.{0,100}(mismatch|different|wrong|stale)", "case_insensitive": true },
+            { "type": "file_exists", "path": "~/.config/caelestia-update/repo", "expected": "present" }
+          ] }
+        ]
+      },
+      "fix": [
+        { "text": "Upstream issue #565 (OPEN): two updaters write the same version-tracking files from different checkouts. `update.sh` deploys from your real clone; the Nexus 'Install Updates' button (caelestia-update) deploys from a private shadow clone at ~/.config/caelestia-update/repo. Alternating between them desyncs the pending-commit badge and can overwrite uncommitted work." },
+        { "text": "Check which commit the shell thinks it is running vs. your real clone:", "command": "cat ~/.config/quickshell/caelestia/.current_commit; git -C ~/caelestia-dots-kde rev-parse HEAD", "command_risk": "READ_ONLY" },
+        { "text": "Pick ONE updater path and stick to it: dev-workflow users should use update.sh from their clone and avoid the Nexus button (or vice versa); the two must not alternate until upstream fixes the shared state.", "command_risk": "READ_ONLY" },
+        { "text": "Before any future update: commit or stash local edits in your real clone first - the shadow-clone path does not stash them for you." }
+      ],
+      "undo": [
+        { "text": "If uncommitted edits were overwritten, check `git -C ~/caelestia-dots-kde reflog` and `git stash list` - but note the shadow clone never touched the real clone's git state, so recovery depends on your own history." }
+      ],
+      "clarify_probe": "Paste the output of: cat ~/.config/quickshell/caelestia/.current_commit && git -C ~/caelestia-dots-kde rev-parse HEAD - and confirm which updater ran last (update.sh from your clone, or the Nexus 'Install Updates' button).",
+      "references": [
+        { "kind": "issue", "number": 565, "state": "open" }
+      ]
+    }
+  ]
+}
