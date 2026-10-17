@@ -1,0 +1,185 @@
+{
+ "note": "AUTHORED by the exponential-build-5 ARENA-BUILDER from registry facts (tools.json ranges/enums/defaults) and rule-pack matchers. Reviewer judgment, not engine output. Negatives/accepts per the build-5 spec.",
+ "items": [
+  {
+   "id": "np01",
+   "text": "make the bar 20 percent smaller",
+   "expect_tool": "setBarScale",
+   "expect_value": 0.8
+  },
+  {
+   "id": "np02",
+   "text": "make the bar 20% smaller",
+   "expect_tool": "setBarScale",
+   "expect_value": 0.8
+  },
+  {
+   "id": "np03",
+   "text": "set the bar scale to 1.2",
+   "expect_tool": "setBarScale",
+   "expect_value": 1.2
+  },
+  {
+   "id": "np04",
+   "text": "make the dock icons 40 pixels",
+   "expect_tool": "setDockIconSize",
+   "expect_value": 40
+  },
+  {
+   "id": "np05",
+   "text": "set the dock icon size to 48",
+   "expect_tool": "setDockIconSize",
+   "expect_value": 48
+  },
+  {
+   "id": "np06",
+   "text": "put the bar at the top",
+   "expect_tool": "setBarPosition",
+   "expect_value": "top"
+  },
+  {
+   "id": "np07",
+   "text": "set the border thickness to 5",
+   "expect_tool": "setBorderThickness",
+   "expect_value": 5
+  },
+  {
+   "id": "np08",
+   "text": "enable blur",
+   "expect_tool": "setBlurEnabled",
+   "expect_value": true
+  },
+  {
+   "id": "np09",
+   "text": "turn off blur",
+   "expect_tool": "setBlurEnabled",
+   "expect_value": false
+  },
+  {
+   "id": "np10",
+   "text": "show the date next to the clock",
+   "expect_tool": "setClockShowDate",
+   "expect_value": true
+  },
+  {
+   "id": "np11",
+   "text": "hide the clock icon",
+   "expect_tool": "setClockShowIcon",
+   "expect_value": false
+  },
+  {
+   "id": "np12",
+   "text": "use the 24 hour clock format",
+   "expect_tool": "setClockFormat",
+   "expect_value": "TwentyFourHour"
+  },
+  {
+   "id": "np13",
+   "text": "make everything pitch black",
+   "expect_tool": "setPitchBlack",
+   "expect_value": true
+  },
+  {
+   "id": "np14",
+   "text": "enable the launcher",
+   "expect_tool": "setLauncherEnabled",
+   "expect_value": true
+  },
+  {
+   "id": "np15",
+   "text": "limit notification popups to 3",
+   "expect_tool": "setNotifsMaxPopups",
+   "expect_value": 3
+  },
+  {
+   "id": "np16",
+   "text": "set the transparency base to 0.5",
+   "expect_tool": "setTransparencyBase",
+   "expect_value": 0.5
+  },
+  {
+   "id": "np17",
+   "text": "raise the max volume to 120 percent",
+   "expect_tool": "setMaxVolume",
+   "expect_value": 1.2
+  },
+  {
+   "id": "np18",
+   "text": "make the font 10 percent bigger",
+   "expect_tool": "setFontScale",
+   "expect_value": 1.1
+  },
+  {
+   "id": "np19",
+   "text": "set the spacing scale to 1.25",
+   "expect_tool": "setSpacingScale",
+   "expect_value": 1.25
+  },
+  {
+   "id": "np20",
+   "text": "make animations half speed",
+   "expect_tool": "setAnimationSpeed",
+   "expect_value": 0.5
+  },
+  {
+   "id": "np21",
+   "text": "set the overview base duration to 400",
+   "expect_tool": "setBaseDuration",
+   "expect_value": 400
+  },
+  {
+   "id": "np22",
+   "text": "notification group preview count 6",
+   "expect_tool": "setGroupPreviewNum",
+   "expect_value": 6
+  },
+  {
+   "id": "np23",
+   "text": "set the osd hide delay to 2 seconds",
+   "expect_tool": "setHideDelay",
+   "expect_value": 2000
+  },
+  {
+   "id": "np24",
+   "text": "notifications should time out after 5 seconds",
+   "expect_tool": "setDefaultExpireTimeout",
+   "expect_value": 5000
+  },
+  {
+   "id": "np25",
+   "text": "set the ambient opacity to 0.8",
+   "expect_tool": "setAmbientOpacity",
+   "expect_value": 0.8
+  },
+  {
+   "id": "np26",
+   "text": "enable the dashboard",
+   "expect_tool": "setDashboardEnabled",
+   "expect_value": true
+  },
+  {
+   "id": "np27",
+   "text": "hide the sidebar",
+   "expect_tool": "setSidebarEnabled",
+   "expect_value": false
+  },
+  {
+   "id": "np28",
+   "text": "stop the wallpaper slideshow",
+   "expect_tool": "setSlideshowEnabled",
+   "expect_value": false
+  },
+  {
+   "id": "np29",
+   "text": "set the notification expire timeout to 3000",
+   "expect_tool": "setDefaultExpireTimeout",
+   "expect_value": 3000
+  },
+  {
+   "id": "np30",
+   "text": "show seconds on the clock",
+   "expect_tool": "setClockShowSeconds",
+   "expect_value": true
+  }
+ ]
+}

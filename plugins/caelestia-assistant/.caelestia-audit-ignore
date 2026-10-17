@@ -1,0 +1,87 @@
+# .caelestia-audit-ignore - documented opt-outs for scripts/check_safety.py
+#
+# The store's line-level opt-out is a trailing 'caelestia-audit:' comment;
+# this file covers the cases where that is impossible or wrong:
+#   * JSON data artifacts cannot carry comments without corrupting data,
+#   * flagged text inside docstrings/string vocabularies where appending
+#     a comment would change the string,
+#   * assertion-target strings in tests (the banned pattern IS the test).
+#
+# Format: <plugin-relative path>[:line|:start-end]  # reason
+# Every entry was reviewed against the source; nothing here performs a
+# network fetch or a privileged action (see the migration audit).
+#
+        # assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml
+        # Shell sidebar QML: XMLHttpRequest calls the user-configured AI provider endpoints
+          (GlobalConfig.ai.*, incl. loopback Ollama default) - the opt-in, user-keyed cloud fallback tier;
+          disabled unless the user configures a provider. No other network use exists.
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:163
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:169
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:1408
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:1411
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:1463
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:1468
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:1722
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:1734
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:1764
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:1797
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:2165
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:2232
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:2238
+assistant/adapters/caelestia/shell/modules/sidebar/AiAssistant.qml:2359
+
+        # assistant/capabilities/brain/qa.py
+        # Question-type cue table: the literal 'sudo' is a string keyword used to classify question text;
+          nothing is executed.
+assistant/capabilities/brain/qa.py:243
+
+        # assistant/capabilities/diagnostics/argumentation.py
+        # Command tokenization: the literal 'sudo' is stripped/classified as a token; analysis only, never
+          executed.
+assistant/capabilities/diagnostics/argumentation.py:278
+assistant/capabilities/diagnostics/argumentation.py:281
+
+        # assistant/capabilities/diagnostics/risk.py
+        # Static risk classifier: deny-list REGEX VOCABULARY that matches dangerous shapes (curl|sh,
+          wget|sh, sudo, pkexec, doas) to LABEL commands PRIVILEGED/DESTRUCTIVE. Text patterns; the engine
+          never runs commands.
+assistant/capabilities/diagnostics/risk.py:12
+assistant/capabilities/diagnostics/risk.py:17
+assistant/capabilities/diagnostics/risk.py:41
+assistant/capabilities/diagnostics/risk.py:42
+assistant/capabilities/diagnostics/risk.py:62
+
+        # assistant/capabilities/diagnostics/rules.d/config_kde.json
+        # Rulepack prose: display-only suggested command (assistant never executes; steps are labeled and
+          require explicit user confirmation).
+assistant/capabilities/diagnostics/rules.d/config_kde.json:73
+
+        # assistant/capabilities/diagnostics/rules.d/install.json
+        # Rulepack: display-only copy-paste install commands, in-rule labeled PRIVILEGED via command_risk,
+          plus updater prose mentioning 'git clone'. Never executed by the assistant.
+assistant/capabilities/diagnostics/rules.d/install.json:23
+assistant/capabilities/diagnostics/rules.d/install.json:25
+assistant/capabilities/diagnostics/rules.d/install.json:30
+assistant/capabilities/diagnostics/rules.d/install.json:32
+assistant/capabilities/diagnostics/rules.d/install.json:36
+assistant/capabilities/diagnostics/rules.d/install.json:38
+assistant/capabilities/diagnostics/rules.d/install.json:114
+assistant/capabilities/diagnostics/rules.d/install.json:132
+assistant/capabilities/diagnostics/rules.d/install.json:133
+assistant/capabilities/diagnostics/rules.d/install.json:153
+assistant/capabilities/diagnostics/rules.d/install.json:229
+
+        # assistant/capabilities/diagnostics/rules.d/known_regressions.json
+        # Rulepack prose: display-only suggested command string, confirmation-gated, never executed.
+assistant/capabilities/diagnostics/rules.d/known_regressions.json:27
+
+        # assistant/capabilities/diagnostics/rules.d/runtime.json
+        # Rulepack prose: display-only suggested reinstall command string, confirmation-gated, never
+          executed.
+assistant/capabilities/diagnostics/rules.d/runtime.json:74
+
+        # assistant/data/index/bm25.json
+        # Built BM25 search-index artifact (single-line JSON): term/document data mentioning 'curl', 'git
+          ls-remote'. Data, not code; JSON cannot carry line-level opt-out comments.
+assistant/data/index/bm25.json:1
+

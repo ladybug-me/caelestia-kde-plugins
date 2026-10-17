@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "ruleset": "caelestia-layer1-config-kde",
+  "provenance": {
+    "generated_from": ["docs/TROUBLESHOOTING.md sections 3.3, 3.4, 3.7, 3.8, 5.1", "issues #14, #763, #6, #641, #416, #616"],
+    "repo_commit": "f91f4ec9"
+  },
+  "rules": [
+    {
+      "id": "CL-config-kmycolors-001",
+      "title": "kde-material-you-colors fights the shell: scheme resets to Material You Dark / screen flashes every second",
+      "category": "config",
+      "severity": "high",
+      "confidence": "deterministic",
+      "matchers": {
+        "anyOf": [
+          { "type": "text_substring", "value": "kde-material-you-colors", "case_insensitive": true },
+          { "type": "text_substring", "value": "material you dark", "case_insensitive": true },
+          { "allOf": [
+            { "type": "text_regex", "pattern": "screen flashes|flashing", "case_insensitive": true },
+            { "type": "text_regex", "pattern": "every second|constantly|repeatedly", "case_insensitive": true }
+          ] }
+        ]
+      },
+      "fix": [
+        { "text": "Stop and disable the legacy color service — it is not part of this port and fights the shell's scheme pipeline.", "command": "systemctl --user disable --now kde-material-you-colors", "command_risk": "PRIVILEGED", "warning": "Disables a user service. This is the documented fix; the shell's own scheme engine replaces it." },
+        { "text": "Confirm the apply-loop actually stopped.", "command": "pgrep -af plasma-apply-colorscheme", "command_risk": "READ_ONLY" },
+        { "text": "Re-run the autostart step: it removes the service and leftover MaterialYou color files.", "command": "bash scripts/10-autostart.sh", "command_risk": "STATE_CHANGING" }
+      ],
+      "references": [
+        { "kind": "doc", "anchor": "#37-screen-flashes-and-the-shell-stutters-every-second" },
+        { "kind": "issue", "number": 14, "state": "closed" }
+      ]
+    },
+    {
+      "id": "CL-config-schemereset-001",
+      "title": "Color variant falls back to Tonal Spot after every reboot/login",
+      "category": "config",
+      "severity": "medium",
+      "confidence": "deterministic",
+      "matchers": {
+        "allOf": [
+          { "type": "text_substring", "value": "tonal spot", "case_insensitive": true },
+          { "type": "text_regex", "pattern": "reboot|restart|log ?in|login|logout|log ?out", "case_insensitive": true }
+        ]
+      },
+      "fix": [
+        { "text": "Enable the automatic scheme hand-off: Nexus -> Colors -> Advanced Colors -> 'Automatic Color scheme' ON." },
+        { "text": "Update the shell — the reset-after-restart bug was fixed on dev (maintainer marked it fixed).", "command": "bash update.sh", "command_risk": "STATE_CHANGING" }
+      ],
+      "references": [
+        { "kind": "doc", "anchor": "#34-colors-not-applying" },
+        { "kind": "issue", "number": 763, "state": "closed" }
+      ]
+    },
+    {
+      "id": "CL-kde-bluez-001",
+      "title": "Bluetooth adapter turns on then immediately off; nothing pairs",
+      "category": "kde",
+      "severity": "medium",
+      "confidence": "deterministic",
+      "matchers": {
+        "allOf": [
+          { "type": "text_substring", "value": "bluetooth", "case_insensitive": true },
+          { "anyOf": [
+            { "type": "text_substring", "value": "turns on then turns off", "case_insensitive": true },
+            { "type": "text_substring", "value": "nothing pairs", "case_insensitive": true },
+            { "type": "text_substring", "value": "won't pair", "case_insensitive": true }
+          ] }
+        ]
+      },
+      "fix": [
+        { "text": "This was a missing/misconfigured bluez stack, not a shell bug. Install the stack and enable the service.", "command": "sudo pacman -Sy bluez bluez-utils && sudo systemctl enable --now bluetooth.service", "command_risk": "PRIVILEGED", "warning": "Uses sudo; installs packages and enables a system service." },
+        { "text": "If the KDE Bluetooth settings app also fails, it is a system/service problem — do not chase it through the shell config." }
+      ],
+      "references": [{ "kind": "issue", "number": 6, "state": "closed" }]
+    },
+    {
+      "id": "CL-kde-thumbs-001",
+      "title": "Bar/taskbar thumbnails or launcher entries broken — desktop cache stale",
+      "category": "kde",
+      "severity": "low",
+      "confidence": "probable",
+      "matchers": {
+        "allOf": [
+          { "type": "text_regex", "pattern": "thumbnails? (not|stop|stopped|aren'?t|isn'?t) (working|showing|appearing)|screencast preview", "case_insensitive": true }
+        ],
+        "anyOf": [
+          { "type": "file_exists", "path": "~/.local/share/applications/quickshell.desktop", "expected": "present", "required": false },
+          { "type": "text_substring", "value": "after update", "case_insensitive": true, "required": false }
+        ]
+      },
+      "fix": [
+        { "text": "Rebuild the KDE application cache, then ask KWin to reconfigure.", "command": "kbuildsycoca6 --noincremental", "command_risk": "STATE_CHANGING" },
+        { "text": "Reconfigure KWin.", "command": "qdbus6 org.kde.KWin /KWin reconfigure", "command_risk": "STATE_CHANGING" },
+        { "text": "If the quickshell desktop file is missing (thumbnails/screencast interfaces registered through it), re-run the autostart step.", "command": "ls ~/.local/share/applications/quickshell.desktop", "command_risk": "READ_ONLY" }
+      ],
+      "references": [{ "kind": "doc", "anchor": "#33-window-thumbnails--screencast-not-working" }]
+    },
+    {
+      "id": "CL-kde-wstrack-001",
+      "title": "Workspace pills/tracker not running (KWin effect enabled but not loaded)",
+      "category": "kde",
+      "severity": "medium",
+      "confidence": "deterministic",
+      "matchers": {
+        "allOf": [
+          { "type": "text_regex", "pattern": "workspace (pills|tracker)|workspace_tracker", "case_insensitive": true },
+          { "type": "text_regex", "pattern": "not (running|loading|loaded|working)", "case_insensitive": true }
+        ]
+      },
+      "fix": [
+        { "text": "Run the repo's own checker; exit code 3 means enabled-but-not-loaded.", "command": "bash ~/.config/quickshell/caelestia/scripts/check-workspace-tracker.sh", "command_risk": "READ_ONLY" },
+        { "text": "Rebuild/reinstall the effect via the updater, then log out and back in — KWin only loads effects at startup.", "command": "bash update.sh", "command_risk": "STATE_CHANGING" },
+        { "text": "Verify the D-Bus service is introspectable after login.", "command": "qdbus6 org.kde.KWin /Caelestia/Workspaces org.freedesktop.DBus.Introspectable.Introspect", "command_risk": "READ_ONLY" }
+      ],
+      "references": [{ "kind": "doc", "anchor": "#38-workspace-tracker-effect-stops-loading-after-a-kde-update" }]
+    },
+    {
+      "id": "CL-kde-fullscreen-001",
+      "title": "Gamescope games launch in half the screen (fullscreen broken)",
+      "category": "kde",
+      "severity": "low",
+      "confidence": "deterministic",
+      "matchers": {
+        "allOf": [
+          { "type": "text_substring", "value": "gamescope", "case_insensitive": true },
+          { "type": "text_regex", "pattern": "half of the screen|not fullscreen|half.?screen", "case_insensitive": true }
+        ]
+      },
+      "fix": [
+        { "text": "Update to latest dev — the fullscreen handling for gamescope-launched games was fixed after the report." },
+        { "text": "Per-session workaround from the thread: toggle 'Dodge windows' for the game window." },
+        { "text": "The thread's maintainer workaround edits the Shortcuts.qml file directly; it is overwritten by updates, so prefer updating.", "command": "$EDITOR ~/.config/quickshell/caelestia/modules/Shortcuts.qml", "command_risk": "STATE_CHANGING", "warning": "Edits an installed shell file in place; updates overwrite or conflict with it." }
+      ],
+      "references": [{ "kind": "issue", "number": 641, "state": "closed" }]
+    },
+    {
+      "id": "CL-kde-monfocus-001",
+      "title": "Launcher opens on the monitor with the fullscreen video; alt-tab stops responding",
+      "category": "kde",
+      "severity": "low",
+      "confidence": "deterministic",
+      "matchers": {
+        "allOf": [
+          { "type": "text_regex", "pattern": "fullscreen.{0,80}(monitor|screen|output)", "case_insensitive": true },
+          { "type": "text_regex", "pattern": "launcher|alt.?tab|overview", "case_insensitive": true }
+        ]
+      },
+      "fix": [
+        { "text": "Update to latest dev: multi-monitor fullscreen focus fixes landed the same day this was reported; the video-wallpaper root cause is tracked alongside it." },
+        { "text": "Check your current commit first.", "command": "git -C ~/caelestia-kde log --oneline -1", "command_risk": "READ_ONLY" }
+      ],
+      "references": [
+        { "kind": "issue", "number": 416, "state": "closed" },
+        { "kind": "issue", "number": 409, "state": "closed" }
+      ]
+    },
+    {
+      "id": "CL-kde-gpumulti-001",
+      "title": "GPU widget shows roughly half the real usage (averaged across every DRM card)",
+      "category": "kde",
+      "severity": "low",
+      "confidence": "deterministic",
+      "matchers": {
+        "allOf": [
+          { "type": "text_regex", "pattern": "gpu.{0,60}(widget|usage|stat|percentage)", "case_insensitive": true },
+          { "anyOf": [
+            { "type": "text_substring", "value": "/sys/class/drm" },
+            { "type": "text_regex", "pattern": "averag|half|wrong|incorrect|both gpus|two gpus", "case_insensitive": true }
+          ] }
+        ]
+      },
+      "fix": [
+        { "text": "Verify per-card usage yourself — the old build averaged every card, so a 100% dGPU next to an idle iGPU showed ~50%.", "command": "for f in /sys/class/drm/card*/device/gpu_busy_percent; do echo \"$f: $(cat $f)\"; done", "command_risk": "READ_ONLY" },
+        { "text": "Update to latest dev: the per-card averaging bug was fixed after being reported." }
+      ],
+      "references": [{ "kind": "issue", "number": 616, "state": "closed" }]
+    },
+    {
+      "id": "CL-config-darkly-001",
+      "title": "Darkly window decoration/theme fails to apply",
+      "category": "config",
+      "severity": "low",
+      "confidence": "deterministic",
+      "matchers": {
+        "allOf": [
+          { "type": "text_regex", "pattern": "lookandfeeltool --apply \\\"Darkly\\\" failed|darkly.{0,40}(not applied|unchanged|failed)", "case_insensitive": true }
+        ]
+      },
+      "fix": [
+        { "text": "Apply the decoration directly through kwin config, then reconfigure.", "command": "kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key library org.kde.darkly && kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key theme @darkly", "command_risk": "STATE_CHANGING" },
+        { "text": "Reconfigure KWin.", "command": "qdbus6 org.kde.KWin /KWin reconfigure", "command_risk": "STATE_CHANGING" }
+      ],
+      "references": [{ "kind": "doc", "anchor": "#51-darkly-theme-not-applied" }]
+    }
+  ]
+}
