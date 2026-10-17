@@ -1,0 +1,85 @@
+{
+ "note": "AUTHORED by the exponential-build-5 ARENA-BUILDER from registry facts (tools.json ranges/enums/defaults) and rule-pack matchers. Reviewer judgment, not engine output. Negatives/accepts per the build-5 spec.",
+ "items": [
+  {
+   "id": "n01",
+   "text": "write a poem about autumn"
+  },
+  {
+   "id": "n02",
+   "text": "what is the capital of France"
+  },
+  {
+   "id": "n03",
+   "text": "how do I install docker"
+  },
+  {
+   "id": "n04",
+   "text": "translate hello to french"
+  },
+  {
+   "id": "n05",
+   "text": "play some music"
+  },
+  {
+   "id": "n06",
+   "text": "what's the weather like tomorrow"
+  },
+  {
+   "id": "a07",
+   "text": "tell me a joke"
+  },
+  {
+   "id": "a08",
+   "text": "who wrote romeo and juliet"
+  },
+  {
+   "id": "a09",
+   "text": "what is the meaning of life"
+  },
+  {
+   "id": "a10",
+   "text": "book me a flight to tokyo"
+  },
+  {
+   "id": "a11",
+   "text": "order a pizza"
+  },
+  {
+   "id": "a12",
+   "text": "what time is it right now"
+  },
+  {
+   "id": "a13",
+   "text": "sing me a song"
+  },
+  {
+   "id": "a14",
+   "text": "define serendipity"
+  },
+  {
+   "id": "a15",
+   "text": "recommend a good movie"
+  },
+  {
+   "id": "a16",
+   "text": "how tall is mount everest"
+  },
+  {
+   "id": "a17",
+   "text": "spell the word necessary"
+  },
+  {
+   "id": "a18",
+   "text": "convert 100 dollars to euros"
+  },
+  {
+   "id": "a19",
+   "text": "write a haiku about the sea"
+  },
+  {
+   "id": "a20",
+   "text": "who won the last world cup"
+  }
+ ]
+}

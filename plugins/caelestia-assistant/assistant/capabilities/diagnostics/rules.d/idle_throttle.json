@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "ruleset": "idle-throttle",
+  "provenance": {
+    "generated_from": "Issue #120 Phase 2.3: a deterministic idle-state throttling rule. The proposal side (reduce blur/animation while the machine sits idle, revert on activity) mirrors the shipped battery-saver and gaming presets' exact tool calls, so every suggested change is already a validated registry tool. Read-only: the engine never executes anything; the settings changes ride the ledger propose/approve flow via assistant/brain/settings_bridge.py, and the round-trip is pinned by assistant/diagnostics/tests/test_idle_throttle.py.",
+    "repo_commit": "issue-120-phase-2"
+  },
+  "rules": [
+    {
+      "id": "CL-idle-throttle-001",
+      "title": "Battery drains while the machine sits idle: throttle blur/animation, revert on resume",
+      "category": "config",
+      "severity": "medium",
+      "confidence": "deterministic",
+      "matchers": {
+        "allOf": [
+          { "anyOf": [
+            { "type": "text_regex", "pattern": "(?i)(idle|overnight|suspend(ed)?|away).{0,80}(battery|drain|discharge|power)" },
+            { "type": "text_regex", "pattern": "(?i)(battery|power).{0,80}(idle|overnight|suspend(ed)?|away)" },
+            { "type": "text_regex", "pattern": "(?i)save power|power sav(e|ing)|battery life" }
+          ] }
+        ]
+      },
+      "fix": [
+        { "text": "Deterministic idle-throttle proposal (issue #120 phase 2.3): while the machine sits idle, blur compositing and long animations are the cheapest visible power sinks. The exact reductions below are the shipped battery-saver preset's own tool calls — nothing invented. Propose them as a pair in the ledger (brain settings propose), approve when you actually walk away, and propose the revert when you are back." },
+        { "text": "Propose the throttle (dry-run preview, nothing written):", "command": "python3 -m assistant.capabilities.brain settings propose --file ~/.config/caelestia/shell.json --call setBlurEnabled=false --call setAnimationSpeed=0.25 --reason 'idle throttle: reduce blur and animation while away'", "command_risk": "STATE_CHANGING" },
+        { "text": "Propose the revert for when activity resumes (blur back on, animations back to your normal speed — 1.0 is the shipped default):", "command": "python3 -m assistant.capabilities.brain settings propose --file ~/.config/caelestia/shell.json --call setBlurEnabled=true --call setAnimationSpeed=1.0 --reason 'idle throttle revert: activity resumed'", "command_risk": "STATE_CHANGING" },
+        { "text": "Approve/reject the pending proposals with: brain ledger list, then brain ledger approve ID (approve applies through the gated applier with a backup; reject discards)." },
+        { "text": "The one-shot, no-ledger equivalent is the battery-saver preset: caelestia-assist settings 'battery saver' --apply (multi-change, so it previews and asks for --confirm first)." }
+      ],
+      "undo": [
+        { "text": "caelestia-assist settings --restore puts the single backup slot back, or --undo-id ID reverts one specific change from the bounded history." }
+      ],
+      "clarify_probe": "Paste `cat /sys/class/power_supply/BAT*/capacity` before and after the idle window (a plain read) — if the drop is under ~3% the drain is not the compositor and this rule is not your answer.",
+      "references": [
+        { "kind": "issue", "number": 120, "state": "open" },
+        { "kind": "doc", "anchor": "assistant/settings/tools.json — battery-saver and gaming presets (setBlurEnabled/setAnimationSpeed citations)" }
+      ]
+    }
+  ]
+}

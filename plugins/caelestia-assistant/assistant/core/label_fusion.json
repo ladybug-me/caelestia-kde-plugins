@@ -1,0 +1,34 @@
+{
+ "voters": [
+  "bigram",
+  "bm25",
+  "coverage",
+  "cue",
+  "fuzz",
+  "ppmi"
+ ],
+ "sensitivity": {
+  "bigram": 0.3208,
+  "bm25": 0.8463,
+  "coverage": 0.9622,
+  "cue": 0.8787,
+  "fuzz": 0.707,
+  "ppmi": 0.6779
+ },
+ "false_mass": {
+  "bigram": 0.0054,
+  "bm25": 0.021,
+  "coverage": 0.0042,
+  "cue": 0.0163,
+  "fuzz": 0.0413,
+  "ppmi": 0.0455
+ },
+ "iters_run": 14,
+ "n_items": 107,
+ "thresholds": {
+  "posterior_demote": 0.05,
+  "agreement_floor": 0.17
+ },
+ "tuning": "grid over posterior_demote x agreement_floor on the dev arena; chosen point maximizes (confident-wrongs demoted - correct routes demoted); frozen with the artifact. The LSA voter was cut (measured no-op, costly cold build) before this fit.",
+ "note": "Dawid-Skene EM over the dev routing set's per-signal votes (unsupervised \u2014 accept sets never read). The runtime action is demote-only: a confident ROUTED verdict the voters contradict becomes an honest ask."
+}

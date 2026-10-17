@@ -1,0 +1,136 @@
+{
+ "generator": "assistant.capabilities.shellkb.pubgrub fixture",
+ "note": "ILLUSTRATIVE universe: the package NAMES come from upstream's own installer (scripts: kwin, plasma-workspace, libplasma, qt6-base, qt6-declarative, quickshell, qt6-tools; scripts/lib/toolchain.sh session-packages list). The version BOUNDS are plausible examples for exercising the explainer, not authoritative data. Pass your own universe for real analysis (--universe FILE / bridge 'universe').",
+ "packages": {
+  "caelestia-shell": {
+   "1.0.0": {
+    "depends": {
+     "quickshell": ">=0.19",
+     "qt6-base": ">=6.7",
+     "qt6-declarative": ">=6.7",
+     "libplasma": ">=6.1",
+     "kwin": ">=6.1",
+     "plasma-workspace": "*"
+    },
+    "conflicts": {
+     "quickshell-git": "*"
+    }
+   },
+   "0.9.0": {
+    "depends": {
+     "quickshell": ">=0.18,<0.19",
+     "qt6-base": ">=6.6"
+    }
+   }
+  },
+  "quickshell": {
+   "0.21.0": {
+    "depends": {
+     "qt6-base": ">=6.7",
+     "qt6-declarative": ">=6.7"
+    }
+   },
+   "0.20.0": {
+    "depends": {
+     "qt6-base": ">=6.7",
+     "qt6-declarative": ">=6.7"
+    }
+   },
+   "0.19.0": {
+    "depends": {
+     "qt6-base": ">=6.7",
+     "qt6-declarative": ">=6.7"
+    }
+   },
+   "0.18.0": {
+    "depends": {
+     "qt6-base": ">=6.6",
+     "qt6-declarative": ">=6.6"
+    }
+   }
+  },
+  "quickshell-git": {
+   "0.22.r0": {
+    "depends": {
+     "qt6-base": ">=6.7"
+    },
+    "conflicts": {
+     "quickshell": "*"
+    }
+   }
+  },
+  "qt6-base": {
+   "6.9.0": {
+    "depends": {}
+   },
+   "6.8.0": {
+    "depends": {}
+   },
+   "6.7.0": {
+    "depends": {}
+   },
+   "6.6.0": {
+    "depends": {}
+   }
+  },
+  "qt6-declarative": {
+   "6.9.0": {
+    "depends": {
+     "qt6-base": ">=6.9"
+    }
+   },
+   "6.8.0": {
+    "depends": {
+     "qt6-base": ">=6.7"
+    }
+   },
+   "6.7.0": {
+    "depends": {
+     "qt6-base": ">=6.7"
+    }
+   },
+   "6.6.0": {
+    "depends": {
+     "qt6-base": ">=6.6"
+    }
+   }
+  },
+  "libplasma": {
+   "6.2.0": {
+    "depends": {
+     "qt6-base": ">=6.7"
+    }
+   },
+   "6.1.0": {
+    "depends": {
+     "qt6-base": ">=6.7"
+    }
+   }
+  },
+  "kwin": {
+   "6.2.0": {
+    "depends": {
+     "qt6-base": ">=6.7",
+     "plasma-workspace": "*"
+    }
+   },
+   "6.1.0": {
+    "depends": {
+     "qt6-base": ">=6.7"
+    }
+   }
+  },
+  "plasma-workspace": {
+   "6.2.0": {
+    "depends": {
+     "kwin": ">=6.1"
+    }
+   },
+   "6.1.0": {
+    "depends": {
+     "kwin": ">=6.1"
+    }
+   }
+  }
+ }
+}
