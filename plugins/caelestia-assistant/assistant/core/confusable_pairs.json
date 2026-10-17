@@ -1,0 +1,442 @@
+{
+ "generator": "assistant.core.confusables.mine_pairs",
+ "doc_sim_floor": 0.55,
+ "n_pairs": 29,
+ "pairs": [
+  {
+   "a": "setAmbientOpacity",
+   "b": "setTransparencyBase",
+   "group": "effects",
+   "kind": "float",
+   "doc_similarity": 0.6837,
+   "question": "the AMBIENT background layer's opacity, or the GLOBAL transparency of the whole shell?",
+   "answers": {
+    "ambient": "setAmbientOpacity",
+    "global": "setTransparencyBase"
+   },
+   "gain": 1.0,
+   "evidence": "dev m05: 'make the ambient background more opaque' takes the global transparency slider",
+   "source": "hand-pinned (arena failure class)"
+  },
+  {
+   "a": "setAudioIncrement",
+   "b": "setBrightnessIncrement",
+   "group": "services",
+   "kind": "float",
+   "doc_similarity": 0.7508,
+   "question": "the step size for VOLUME, or for SCREEN BRIGHTNESS?",
+   "answers": {
+    "volume": "setAudioIncrement",
+    "brightness": "setBrightnessIncrement"
+   },
+   "gain": 1.0,
+   "evidence": "dev m25/m26: identical sentence one noun apart; the brightness sibling wins both at cold start",
+   "source": "hand-pinned (arena failure class)"
+  },
+  {
+   "a": "setDesktopLyricsPosition",
+   "b": "setDesktopLyricsAlignment",
+   "group": "wallpaper-scheme",
+   "kind": "enum",
+   "doc_similarity": 0.7143,
+   "question": "where the lyrics SIT on screen, or how the text ALIGNS inside its box?",
+   "answers": {
+    "where": "setDesktopLyricsPosition",
+    "align": "setDesktopLyricsAlignment"
+   },
+   "gain": 1.0,
+   "evidence": "dev m15/m16: 'move the lyrics to the centre' and 'centre the lyrics text' rank each other's sibling first (sealed sr93 same class)",
+   "source": "hand-pinned (arena failure class)"
+  },
+  {
+   "a": "setEnableOverviewBlur",
+   "b": "setDisableWallpaperBlur",
+   "group": "overview",
+   "kind": "bool",
+   "doc_similarity": 0.9326,
+   "question": "the blur of the OVERVIEW ITSELF (windows floating in it), or the WALLPAPER's blur while the overview is open?",
+   "answers": {
+    "overview itself": "setEnableOverviewBlur",
+    "wallpaper": "setDisableWallpaperBlur"
+   },
+   "gain": 1.0,
+   "evidence": "dev m11/m12 (sealed sr67/sr68 same class): the two overview blur toggles swap under on/off phrasing",
+   "source": "hand-pinned (arena failure class)"
+  },
+  {
+   "a": "setMaxFprintTries",
+   "b": "setPreviewScalesWirelessPassword",
+   "group": "lockscreen",
+   "kind": "int",
+   "doc_similarity": 0.0,
+   "question": "how many FINGERPRINT attempts before the password fallback — or how the password PREVIEW is scaled?",
+   "answers": {
+    "fingerprint attempts": "setMaxFprintTries",
+    "preview": "setPreviewScalesWirelessPassword"
+   },
+   "gain": 1.0,
+   "evidence": "dev m14: 'fingerprint attempts before the password' lands on a preview-scale tool via the 'password' noun",
+   "source": "hand-pinned (arena failure class)"
+  },
+  {
+   "a": "setPosition",
+   "b": "setHoverBottomRight",
+   "group": "notifications",
+   "kind": "enum",
+   "doc_similarity": 0.0,
+   "question": "where NOTIFICATION toasts appear on screen, or the overview corner that shows windows on HOVER?",
+   "answers": {
+    "toast": "setPosition",
+    "hover": "setHoverBottomRight"
+   },
+   "gain": 1.0,
+   "evidence": "dev m08: 'show toasts in the bottom-right corner' confidently takes the overview hover-corner toggle",
+   "source": "hand-pinned (arena failure class)"
+  },
+  {
+   "a": "setTrayRecolour",
+   "b": "setDockRecolourIcons",
+   "group": "bar",
+   "kind": "bool",
+   "doc_similarity": 0.6803,
+   "question": "which icons — the system TRAY icons, or the DOCK app icons?",
+   "answers": {
+    "tray": "setTrayRecolour",
+    "dock": "setDockRecolourIcons"
+   },
+   "gain": 1.0,
+   "evidence": "dev m02: 'recolour the tray icons to match my theme' ranks the dock sibling first (sealed sr13 same class)",
+   "source": "hand-pinned (arena failure class)"
+  },
+  {
+   "a": "setBarScale",
+   "b": "setPreviewScale",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9132,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setBarScale",
+    "absolute value": "setPreviewScale"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9132",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setBarShowOnHover",
+   "b": "setGreeterShowOnHover",
+   "group": "bar",
+   "kind": "bool",
+   "doc_similarity": 0.9529,
+   "question": "the bar setting, or the greeter setting?",
+   "answers": {
+    "bar": "setBarShowOnHover",
+    "greeter": "setGreeterShowOnHover"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9529",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setDesktopClockInvertColors",
+   "b": "setDesktopLyricsInvertColors",
+   "group": "wallpaper-scheme",
+   "kind": "bool",
+   "doc_similarity": 0.9088,
+   "question": "the clock setting, or the lyrics setting?",
+   "answers": {
+    "clock": "setDesktopClockInvertColors",
+    "lyrics": "setDesktopLyricsInvertColors"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'wallpaper-scheme' documents similarity 0.9088",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setDesktopIconsEnabled",
+   "b": "setMaterialYouIconsEnabled",
+   "group": "wallpaper-scheme",
+   "kind": "bool",
+   "doc_similarity": 0.8952,
+   "question": "the desktop setting, or the material setting?",
+   "answers": {
+    "desktop": "setDesktopIconsEnabled",
+    "material": "setMaterialYouIconsEnabled"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'wallpaper-scheme' documents similarity 0.8952",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScale",
+   "b": "setPreviewScalesAudio",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9539,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScale",
+    "absolute value": "setPreviewScalesAudio"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9539",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScale",
+   "b": "setPreviewScalesBattery",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9539,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScale",
+    "absolute value": "setPreviewScalesBattery"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9539",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScale",
+   "b": "setPreviewScalesBluetooth",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9539,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScale",
+    "absolute value": "setPreviewScalesBluetooth"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9539",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScale",
+   "b": "setPreviewScalesDock",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9539,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScale",
+    "absolute value": "setPreviewScalesDock"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9539",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScale",
+   "b": "setPreviewScalesGithub",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9539,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScale",
+    "absolute value": "setPreviewScalesGithub"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9539",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScale",
+   "b": "setPreviewScalesGreeter",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9539,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScale",
+    "absolute value": "setPreviewScalesGreeter"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9539",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScale",
+   "b": "setPreviewScalesLockStatus",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9139,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScale",
+    "absolute value": "setPreviewScalesLockStatus"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9139",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScale",
+   "b": "setPreviewScalesNetwork",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9539,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScale",
+    "absolute value": "setPreviewScalesNetwork"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9539",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScale",
+   "b": "setPreviewScalesNotifications",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9539,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScale",
+    "absolute value": "setPreviewScalesNotifications"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9539",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScale",
+   "b": "setPreviewScalesPeripheralBattery",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9139,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScale",
+    "absolute value": "setPreviewScalesPeripheralBattery"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9139",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScale",
+   "b": "setPreviewScalesTrayMenu",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.8789,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScale",
+    "absolute value": "setPreviewScalesTrayMenu"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.8789",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScale",
+   "b": "setPreviewScalesWirelessPassword",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9139,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScale",
+    "absolute value": "setPreviewScalesWirelessPassword"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9139",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setPreviewScalesBattery",
+   "b": "setPreviewScalesPeripheralBattery",
+   "group": "bar",
+   "kind": "float",
+   "doc_similarity": 0.9557,
+   "question": "an ABSOLUTE value in that unit, or a SCALE multiplier on the current value?",
+   "answers": {
+    "scale multiplier": "setPreviewScalesBattery",
+    "absolute value": "setPreviewScalesPeripheralBattery"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'bar' documents similarity 0.9557",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setShowDashboard",
+   "b": "setShowMedia",
+   "group": "dashboard",
+   "kind": "bool",
+   "doc_similarity": 0.9321,
+   "question": "the dashboard setting, or the media setting?",
+   "answers": {
+    "dashboard": "setShowDashboard",
+    "media": "setShowMedia"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'dashboard' documents similarity 0.9321",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setShowDashboard",
+   "b": "setShowPerformance",
+   "group": "dashboard",
+   "kind": "bool",
+   "doc_similarity": 0.9321,
+   "question": "the dashboard setting, or the performance setting?",
+   "answers": {
+    "dashboard": "setShowDashboard",
+    "performance": "setShowPerformance"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'dashboard' documents similarity 0.9321",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setShowDashboard",
+   "b": "setShowTerminal",
+   "group": "dashboard",
+   "kind": "bool",
+   "doc_similarity": 0.9321,
+   "question": "the dashboard setting, or the terminal setting?",
+   "answers": {
+    "dashboard": "setShowDashboard",
+    "terminal": "setShowTerminal"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'dashboard' documents similarity 0.9321",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setShowDashboard",
+   "b": "setShowWeather",
+   "group": "dashboard",
+   "kind": "bool",
+   "doc_similarity": 0.9321,
+   "question": "the dashboard setting, or the weather setting?",
+   "answers": {
+    "dashboard": "setShowDashboard",
+    "weather": "setShowWeather"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'dashboard' documents similarity 0.9321",
+   "source": "mined (document twins)"
+  },
+  {
+   "a": "setShowMedia",
+   "b": "setUseMediaShapes",
+   "group": "dashboard",
+   "kind": "bool",
+   "doc_similarity": 0.9325,
+   "question": "the show setting, or the use setting?",
+   "answers": {
+    "show": "setShowMedia",
+    "use": "setUseMediaShapes"
+   },
+   "gain": 1.0,
+   "evidence": "mined: same-group 'dashboard' documents similarity 0.9325",
+   "source": "mined (document twins)"
+  }
+ ]
+}

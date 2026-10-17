@@ -1,0 +1,46 @@
+{
+ "how": "python3 -m assistant.core.eval all --json (dev split). A5 (2026-09-30) re-record over the GROWN arena: +31 items (n01..n34, n03/n32 cut) mined from the failure classes of the sealed baseline look (0.7778) \u2014 sibling-tool swaps, auto-hide families, position-vs-alignment, absolute-vs-scale, keep-awake, unit spellings. No sealed text copied; phrasings are new. Items whose honest answer is a clarifying question assert expect_verdict=AMBIGUOUS. The set is deliberately HARDER than the pre-growth 90-item set (pre-growth top1 floor was 0.9556): raw rates are not comparable across the growth \u2014 per-class deltas are tracked in the build state and CHANGELOG. What matters: the previously-sealed-only classes are now measured on dev, where they can be fixed under the ratchet. baseline.json also records confident_wrong.rate \u2014 the doctor's arena-smoke bar \u2014 because the growth made a fixed 2% constant dishonest. confident_wrong is the FUSED rate (after A2 demote-only label fusion) \u2014 the shipped pipeline behavior.",
+ "metrics": {
+  "routing.top1_rate": {
+   "point": 0.8843,
+   "lo": 0.8182,
+   "hi": 0.9339
+  },
+  "routing.top3_rate": {
+   "point": 0.9339,
+   "lo": 0.8843,
+   "hi": 0.9752
+  },
+  "routing.precision_among_routed": {
+   "point": 0.8929,
+   "lo": 0.8214,
+   "hi": 0.9524
+  },
+  "nlplan.exact_rate": {
+   "point": 1.0,
+   "lo": 1.0,
+   "hi": 1.0
+  },
+  "nlplan.tool_rate": {
+   "point": 1.0,
+   "lo": 1.0,
+   "hi": 1.0
+  },
+  "abstention.abstain_rate": {
+   "point": 1.0,
+   "lo": 1.0,
+   "hi": 1.0
+  },
+  "diagnosis.rule_hit_rate": {
+   "point": 0.95,
+   "lo": 0.8,
+   "hi": 1.0
+  }
+ },
+ "recorded": "2026-09-30",
+ "confident_wrong": {
+  "count": 8,
+  "of_routed": 83,
+  "rate": 0.0964
+ }
+}
