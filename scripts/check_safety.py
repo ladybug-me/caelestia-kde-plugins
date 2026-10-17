@@ -19,6 +19,20 @@ the same line:
     file(DOWNLOAD https://... ...)  # caelestia-audit: allow-network
     pkexec cmake --install          # caelestia-audit: allow-privilege
 
+A plugin can also ship a ``.caelestia-audit-ignore`` file next to its
+metadata.json for findings where a same-line comment is impossible or
+wrong: JSON data artifacts (no comment syntax without corrupting data),
+flagged text inside docstrings or string vocabularies (appending a comment
+would change the string), or assertion-target strings in tests. Each entry
+names a plugin-relative path, optionally restricted to a line or an
+inclusive line range, followed by a '# reason' comment:
+
+    assistant/data/index/bm25.json   # data artifact, not code
+    src/verbs.py:120-132             # string vocabulary, not a call
+
+Entries suppress hard errors for exactly those paths/lines; soft warnings
+still surface. Maintainers review the file like any other part of the diff.
+
 Usage:
     python scripts/check_safety.py
     python scripts/check_safety.py --plugin plugins/web-cursor
@@ -45,6 +59,10 @@ PLUGINS_DIR = REPO_ROOT / "plugins"
 
 ALLOW_NETWORK = "caelestia-audit: allow-network"
 ALLOW_PRIVILEGE = "caelestia-audit: allow-privilege"
+
+# Optional per-plugin opt-out file for findings that cannot carry a same-line
+# marker (see the module docstring). Reviewed as part of the plugin diff.
+AUDIT_IGNORE_NAME = ".caelestia-audit-ignore"
 
 # Extensions we scan for behaviour. README/LICENSE/docs are excluded so prose
 # like "you need curl to build this" does not trip the download rule.
@@ -131,9 +149,55 @@ def iter_code_files(plugin_dir: Path):
             yield path
 
 
-def scan_hard_patterns(path: Path, problems):
+def load_audit_ignore(plugin_dir: Path):
+    """Parse a plugin's optional ``.caelestia-audit-ignore`` file.
+
+    Returns a list of ``(path, lo, hi)`` tuples where ``path`` is a
+    plugin-relative posix path and ``lo``/``hi`` bound an inclusive line
+    range (both ``None`` when the entry covers the whole file).
+    """
+    ignore_file = plugin_dir / AUDIT_IGNORE_NAME
+    if not ignore_file.is_file():
+        return []
+    entries = []
+    for raw in ignore_file.read_text(encoding="utf-8", errors="ignore").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        spec = line.split("#", 1)[0].strip()
+        if not spec:
+            continue  # whitespace before the reason comment
+        path, _, span = spec.partition(":")
+        path = path.strip()
+        if not path:
+            continue
+        lo = hi = None
+        span = span.strip()
+        if span:
+            if "-" in span:
+                a, _, b = span.partition("-")
+                lo, hi = int(a), int(b)
+            else:
+                lo = hi = int(span)
+        entries.append((path, lo, hi))
+    return entries
+
+
+def finding_ignored(rel: str, lineno: int, entries) -> bool:
+    """True when (path, line) is covered by an audit-ignore entry."""
+    for path, lo, hi in entries:
+        if path != rel:
+            continue
+        if lo is None or lo <= lineno <= hi:
+            return True
+    return False
+
+
+def scan_hard_patterns(path: Path, problems, plugin_dir: Path | None = None,
+                       ignore_entries=None):
     text = path.read_text(encoding="utf-8", errors="ignore")
     rel = path.relative_to(REPO_ROOT).as_posix()
+    prel = path.relative_to(plugin_dir).as_posix() if plugin_dir is not None else None
     for lineno, line in enumerate(text.splitlines(), 1):
         stripped = line.strip()
         if stripped.startswith("//") or stripped.startswith("/*") or stripped.startswith("*"):
@@ -153,6 +217,9 @@ def scan_hard_patterns(path: Path, problems):
             marker = ALLOW_NETWORK if category == "net" else ALLOW_PRIVILEGE
             if marker in line:
                 continue
+            if ignore_entries and prel is not None and finding_ignored(
+                    prel, lineno, ignore_entries):
+                break
             problems.append(f"{rel}:{lineno}: {desc}")
             break
 
@@ -251,8 +318,9 @@ def scan_sequence_gaps(plugin_dir, warnings):
 
 
 def scan_plugin(plugin_dir: Path, problems, warnings):
+    ignore_entries = load_audit_ignore(plugin_dir)
     for path in iter_code_files(plugin_dir):
-        scan_hard_patterns(path, problems)
+        scan_hard_patterns(path, problems, plugin_dir, ignore_entries)
         scan_soft_patterns(path, warnings)
         scan_type_typos(path, warnings)
         scan_stubs(path, warnings)
