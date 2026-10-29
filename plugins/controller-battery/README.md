@@ -4,19 +4,6 @@ This is a plugin for [caelestia-kde](https://github.com/ladybug-me/caelestia-kde
 
 <img width="3840" height="2160" alt="image" src="https://github.com/user-attachments/assets/08858252-2199-4fab-81d9-9fc9a56f5df1" />
 
-## Installation
-
-Requires [caelestia-kde](https://github.com/ladybug-me/caelestia-kde) (Plasma 6, Quickshell).
-
-Either install from the git URL in Nexus > Plugins, or manually:
-
-```bash
-git clone https://github.com/verbrannter-toast/controller-battery.git ~/.config/caelestia/plugins/controller-battery
-caelestia shell -d
-```
-
-Then enable the plugin in Nexus > Plugins if it isn't already.
-
 ## Customizing
 
 The panel is movable across the whole desktop and saves its position across reboots. You can reset the position to the default by double clicking it.
