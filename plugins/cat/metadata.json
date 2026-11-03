@@ -1,0 +1,99 @@
+{
+  "id": "cat",
+  "name": "Cat",
+  "description": "An animated cat in the bar: it sleeps while the machine is idle, walks as the CPU picks up and sprints under full load, with a popout showing the live percentage.",
+  "icon": "pets",
+  "mediaurl": "preview.jpg",
+  "screenshots": [
+    "popout.jpg"
+  ],
+  "version": "1.0.0",
+  "type": "quickshell",
+  "ui": "main.qml",
+  "author": {
+    "name": "Solanaceae",
+    "url": "https://github.com/0xSolanaceae"
+  },
+  "license": "MIT",
+  "keywords": [
+    "cat",
+    "bar",
+    "cpu",
+    "animation",
+    "mascot"
+  ],
+  "shell-compat": {
+    "min": "2.6.3"
+  },
+  "barWidgets": [
+    {
+      "id": "cat",
+      "name": "Cat",
+      "icon": "pets",
+      "defaultZone": "right",
+      "component": "BarWidget.qml",
+      "popout": "Popout.qml"
+    }
+  ],
+  "settings": [
+    {
+      "id": "cat_size",
+      "label": "Cat size",
+      "type": "number",
+      "default": 24,
+      "min": 12,
+      "max": 48,
+      "step": 1
+    },
+    {
+      "id": "show_cpu_percent",
+      "label": "Show CPU percentage",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "walk_threshold",
+      "label": "Walk threshold",
+      "type": "number",
+      "default": 15,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "id": "run_threshold",
+      "label": "Run threshold",
+      "type": "number",
+      "default": 60,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "id": "poll_interval",
+      "label": "CPU poll interval",
+      "type": "number",
+      "default": 2,
+      "min": 1,
+      "max": 10,
+      "step": 1
+    },
+    {
+      "id": "cat_color_mode",
+      "label": "Cat color",
+      "type": "enum",
+      "default": "theme",
+      "options": [
+        "theme",
+        "custom"
+      ]
+    },
+    {
+      "id": "cat_color",
+      "label": "Custom color",
+      "type": "text",
+      "default": "#E8A24C",
+      "placeholder": "#E8A24C"
+    }
+  ]
+}
