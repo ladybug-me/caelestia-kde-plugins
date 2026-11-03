@@ -2,7 +2,7 @@ This is a plugin for [caelestia-kde](https://github.com/ladybug-me/caelestia-kde
 
 *Not affiliated with or endorsed by Sony Interactive Entertainment or Valve. PlayStation, PS5, DualSense and Steam are trademarks of their respective owners.*
 
-![Fullscreen-Demo](images/Fullscreen-Demo.png)
+![Fullscreen-Demo](images/Fullscreen-Demo.jpeg)
 
 ## Customizing
 

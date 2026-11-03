@@ -16,11 +16,10 @@
     "widget",
     "desktop"
   ],
-  "ui": "main.qml",
   "icon": "sports_esports",
-  "mediaurl": "images/Demo.png",
+  "mediaurl": "images/Demo.jpeg",
   "screenshots": [
-    "images/Demo.png"
+    "images/Demo.jpeg"
   ],
   "shell-compat": {
     "min": "2.6.3"

@@ -26,7 +26,7 @@ Item {
     // The desktop layer only passes input to this region when the Plasma
     // wallpaper is shown instead of Caelestia's.
     property var inputRegion: Region {
-        item: card
+        item: card.visible ? card : null
     }
 
     // ---- Tweak these ----------------------------------------------------
