@@ -6,10 +6,10 @@
   },
   "name": "Controller Battery",
   "description": "Desktop widget showing the battery level of connected game controllers (PS5, Steam, ...) as rings. Drag to move, double-click to reset.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "type": "quickshell",
-  "restart": "true",
+  "restart": true,
   "keywords": [
     "controller",
     "battery",

@@ -1,9 +1,12 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Shapes
 import QtQuick.Effects
 import QtCore
 import Quickshell
 import Quickshell.Services.UPower
+import "."
 
 // Desktop widget: battery level of connected game controllers, one ring per
 // controller with an icon in the middle.
@@ -19,14 +22,12 @@ Item {
     id: root
 
     // Filled in by Background.qml for the properties declared here.
-    property var screen
-    property var modelData
-    property var background
+    property ShellScreen screen: null
 
     // The desktop layer only passes input to this region when the Plasma
     // wallpaper is shown instead of Caelestia's.
     property var inputRegion: Region {
-        item: card.visible ? card : null
+        item: root.visible ? card : null
     }
 
     // ---- Tweak these ----------------------------------------------------
@@ -39,6 +40,7 @@ Item {
     readonly property int padding: 10             // same space on all four sides of the card
     readonly property int ringSize: 76
     readonly property int ringThickness: 7
+    readonly property int labelWidth: ringSize + 20 // wide enough for the text under a ring
     readonly property int itemSpacing: 20         // gap between controllers
     readonly property bool showLabels: true       // controller name under the percentage
     readonly property bool tintIcons: true        // recolour icons to the theme; turn off for coloured SVGs
@@ -47,52 +49,26 @@ Item {
     readonly property bool showAllPeripherals: false // also list mice, keyboards, headsets...
 
     // First matching rule wins. "match" is tested against the device's sysfs
-    // name and model; "icon" is relative to this folder.
+    // name and model; "icon" is relative to this folder. These rules also
+    // decide what counts as a controller, so a device matching none of them is
+    // ignored unless showAllPeripherals is on.
     readonly property var iconRules: [
         { match: /steam/i, name: "Steam Controller", icon: "icons/steam-controller.svg" },
-        { match: /ps-controller|dualsense|dualshock/i, name: "PS5 Controller", icon: "icons/ps5-controller.svg" }
+        { match: /ps-controller|dualsense|dualshock/i, name: "PS5 Controller", icon: "icons/ps5-controller.svg" },
+        { match: /controller|gamepad|joystick/i, name: "Controller", icon: "icons/controller.svg" }
     ]
+    // For peripherals pulled in by showAllPeripherals, which no rule names.
     readonly property string fallbackIcon: "icons/controller.svg"
     // ---------------------------------------------------------------------
 
-    // Use the shell's colour palette when it can be imported from here;
-    // otherwise fall back to fixed colours below.
-    readonly property var theme: {
-        try {
-            return Qt.createQmlObject(`
-                import QtQuick
-                import qs.services
-                QtObject {
-                    readonly property color surface: Colours.palette.m3surfaceContainer
-                    readonly property color track: Colours.palette.m3surfaceContainerHighest
-                    readonly property color text: Colours.palette.m3onSurface
-                    readonly property color subtle: Colours.palette.m3onSurfaceVariant
-                    readonly property color accent: Colours.palette.m3primary
-                    readonly property color secondary: Colours.palette.m3secondary
-                    readonly property color warn: Colours.palette.m3error
-                }
-            `, root, "controllerBatteryTheme");
-        } catch (e) {
-            return null;
-        }
+    Theme {
+        id: theme
     }
-
-    readonly property color surfaceColor: theme ? theme.surface : "#1e2327"
-    readonly property color trackColor: theme ? theme.track : "#38414a"
-    readonly property color textColor: theme ? theme.text : "#e6e6e6"
-    readonly property color subtleColor: theme ? theme.subtle : "#a0a8b0"
-    readonly property color accentColor: theme ? theme.accent : "#8ab4f8"
-    readonly property color secondaryColor: theme ? theme.secondary : "#5d8bf4"
-    readonly property color warnColor: theme ? theme.warn : "#f28b82"
 
     function isController(d: var): bool {
         if (d.isLaptopBattery || d.type === UPowerDeviceType.LinePower || !d.isPresent)
             return false;
-        if (showAllPeripherals)
-            return true;
-        if (d.type === UPowerDeviceType.GamingInput)
-            return true;
-        return /controller|dualsense|dualshock|gamepad|joystick|steam/i.test((d.model ?? "") + " " + (d.nativePath ?? ""));
+        return showAllPeripherals || d.type === UPowerDeviceType.GamingInput || ruleFor(d) !== null;
     }
 
     function ruleFor(d: var): var {
@@ -121,44 +97,36 @@ Item {
     Settings {
         id: store
 
-        // -1 means "never moved": use the default corner.
-        property real cardX: -1
-        property real cardY: -1
+        // -1,-1 means "never moved": use the default corner.
+        property point cardPos: Qt.point(-1, -1)
 
         category: "Plugin_controller-battery"
 
-        onCardXChanged: root.place()
-        onCardYChanged: root.place()
+        onCardPosChanged: root.place()
     }
 
+    readonly property real maxX: Math.max(0, root.width - card.width)
+    readonly property real maxY: Math.max(0, root.height - card.height)
+
     function clampX(v: real): real {
-        return Math.max(0, Math.min(root.width - card.width, v));
+        return Math.max(0, Math.min(root.maxX, v));
     }
 
     function clampY(v: real): real {
-        return Math.max(0, Math.min(root.height - card.height, v));
+        return Math.max(0, Math.min(root.maxY, v));
     }
 
-    // True while a finished drag is being written to the settings. Saving x
-    // fires its change handler before y has been saved; without this guard
-    // that handler would snap the card back to the default height.
-    property bool saving: false
-
     function place(): void {
-        if (dragHandler.active || saving)
+        if (dragHandler.active)
             return;
-        const dx = alignRight ? root.width - card.width - edgeMargin : edgeMargin;
-        const dy = alignBottom ? root.height - card.height - verticalMargin : verticalMargin;
-        card.x = clampX(store.cardX >= 0 ? store.cardX : dx);
-        card.y = clampY(store.cardY >= 0 ? store.cardY : dy);
+        const dx = alignRight ? root.maxX - edgeMargin : edgeMargin;
+        const dy = alignBottom ? root.maxY - verticalMargin : verticalMargin;
+        card.x = clampX(store.cardPos.x >= 0 ? store.cardPos.x : dx);
+        card.y = clampY(store.cardPos.y >= 0 ? store.cardPos.y : dy);
     }
 
     function resetPosition(): void {
-        saving = true;
-        store.cardX = -1;
-        store.cardY = -1;
-        saving = false;
-        place();
+        store.cardPos = Qt.point(-1, -1);
     }
 
     onWidthChanged: place()
@@ -173,7 +141,7 @@ Item {
         width: row.implicitWidth + root.padding * 2
         height: row.implicitHeight + root.padding * 2
         radius: 22
-        color: Qt.alpha(root.surfaceColor, 0.92)
+        color: Qt.alpha(theme.surface, 0.92)
 
         onWidthChanged: root.place()
         onHeightChanged: root.place()
@@ -187,18 +155,14 @@ Item {
 
             target: card
             xAxis.minimum: 0
-            xAxis.maximum: Math.max(0, root.width - card.width)
+            xAxis.maximum: root.maxX
             yAxis.minimum: 0
-            yAxis.maximum: Math.max(0, root.height - card.height)
+            yAxis.maximum: root.maxY
             cursorShape: Qt.ClosedHandCursor
 
             onActiveChanged: {
-                if (!active) {
-                    root.saving = true;
-                    store.cardX = card.x;
-                    store.cardY = card.y;
-                    root.saving = false;
-                }
+                if (!active)
+                    store.cardPos = Qt.point(card.x, card.y);
             }
         }
 
@@ -224,14 +188,19 @@ Item {
 
                     required property var modelData
 
-                    readonly property int cellWidth: root.ringSize + 20
                     readonly property real level: modelData.percentage
                     readonly property bool charging: modelData.state === UPowerDeviceState.Charging
                         || modelData.state === UPowerDeviceState.PendingCharge
                     // Finished charging (e.g. a controller resting on its dock).
                     readonly property bool full: modelData.state === UPowerDeviceState.FullyCharged
-                    readonly property bool low: level <= root.lowThreshold && !charging
-                    readonly property color ringColor: low ? root.warnColor : root.accentColor
+                    // A docked controller is not charging but is still plugged in.
+                    readonly property bool pluggedIn: charging || full
+                    readonly property bool low: level <= root.lowThreshold && !pluggedIn
+                    readonly property color ringColor: low ? theme.warn : theme.accent
+
+                    // Resolved once per entry rather than inside each binding below.
+                    readonly property string label: root.labelFor(modelData)
+                    readonly property url icon: root.iconFor(modelData)
 
                     // Eased copy of the level so the ring glides between readings.
                     property real shownLevel: level
@@ -246,7 +215,7 @@ Item {
                     }
 
                     Item {
-                        width: entry.cellWidth
+                        width: root.labelWidth
                         height: root.ringSize
 
                         Shape {
@@ -258,7 +227,7 @@ Item {
                             preferredRendererType: Shape.CurveRenderer
 
                             ShapePath {
-                                strokeColor: root.trackColor
+                                strokeColor: theme.track
                                 strokeWidth: root.ringThickness
                                 fillColor: "transparent"
 
@@ -293,7 +262,7 @@ Item {
                             anchors.centerIn: ring
                             width: root.ringSize * 0.6
                             height: width
-                            source: root.iconFor(entry.modelData)
+                            source: entry.icon
                             sourceSize: Qt.size(width * 2, height * 2)
                             fillMode: Image.PreserveAspectFit
                             smooth: true
@@ -302,16 +271,16 @@ Item {
                             layer.enabled: root.tintIcons
                             layer.effect: MultiEffect {
                                 colorization: 1.0
-                                colorizationColor: entry.low ? root.warnColor : root.secondaryColor
+                                colorizationColor: entry.low ? theme.warn : theme.secondary
                             }
                         }
                     }
 
                     Text {
-                        width: entry.cellWidth
+                        width: root.labelWidth
                         horizontalAlignment: Text.AlignHCenter
-                        text: Math.round(entry.level * 100) + "%" + ((entry.charging || entry.full) ? " 🗲" : "")
-                        color: entry.low ? root.warnColor : root.secondaryColor
+                        text: Math.round(entry.level * 100) + "%" + (entry.pluggedIn ? " 🗲" : "")
+                        color: entry.low ? theme.warn : theme.secondary
                         font.pixelSize: 15
                         font.bold: true
                         lineHeight: 20
@@ -321,11 +290,11 @@ Item {
 
                     Text {
                         visible: root.showLabels
-                        width: entry.cellWidth
+                        width: root.labelWidth
                         horizontalAlignment: Text.AlignHCenter
                         elide: Text.ElideRight
-                        text: root.labelFor(entry.modelData)
-                        color: root.subtleColor
+                        text: entry.label
+                        color: theme.subtle
                         font.pixelSize: 12
                     }
                 }
