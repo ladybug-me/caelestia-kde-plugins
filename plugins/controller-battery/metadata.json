@@ -18,9 +18,9 @@
   ],
   "ui": "main.qml",
   "icon": "sports_esports",
-  "mediaurl": "Demo.png",
+  "mediaurl": "images/Demo.png",
   "screenshots": [
-    "Demo.png"
+    "images/Demo.png"
   ],
   "shell-compat": {
     "min": "2.6.3"
