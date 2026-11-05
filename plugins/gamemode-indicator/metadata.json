@@ -1,0 +1,34 @@
+{
+  "id": "gamemode-indicator",
+  "name": "Game mode indicator",
+  "description": "Shows a green gamepad in the bar while game mode is running and announces every change with the shell's own toast. Detects both Caelestia's game mode and Feral GameMode (gamemoded) sessions.",
+  "icon": "gamepad",
+  "version": "1.0.0",
+  "type": "quickshell",
+  "restart": true,
+  "author": {
+    "name": "Amnesia1000",
+    "url": "https://github.com/Amnesia1000"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": "https://github.com/ladybug-me/caelestia-kde-plugins",
+  "keywords": [
+    "gamemode",
+    "game",
+    "performance",
+    "indicator",
+    "bar"
+  ],
+  "shell-compat": {
+    "min": "2.7"
+  },
+  "barWidgets": [
+    {
+      "id": "gamemodeIndicator",
+      "name": "Game mode indicator",
+      "icon": "gamepad",
+      "defaultZone": "right",
+      "component": "GameModeIcon.qml"
+    }
+  ]
+}
