@@ -1,0 +1,35 @@
+{
+  "id": "controller-battery-bar",
+  "name": "Controller Battery Bar",
+  "description": "Game controller battery as a ring in the bar: it empties as the battery drains, keeps the percentage inside and changes colour (green above 30%, amber down to 10%, red below), with a popout showing each controller's name, state, energy, draw and MAC address. It lives only in the panel, so it is visible while playing and reads at a glance: a more graphical, colour-coded alternative to the generic battery indicator the system shows.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "quickshell",
+  "restart": true,
+  "icon": "sports_esports",
+  "keywords": [
+    "controller",
+    "gamepad",
+    "battery",
+    "bar",
+    "panel",
+    "gaming"
+  ],
+  "author": {
+    "name": "Alejandro Di Paola",
+    "url": "https://github.com/Amnesia1000"
+  },
+  "shell-compat": {
+    "min": "2.6.3"
+  },
+  "barWidgets": [
+    {
+      "id": "controllerBatteryBar",
+      "name": "Controller Battery",
+      "icon": "sports_esports",
+      "defaultZone": "right",
+      "component": "BarWidget.qml",
+      "popout": "Popout.qml"
+    }
+  ]
+}
